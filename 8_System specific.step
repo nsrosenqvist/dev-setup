@@ -1,9 +1,9 @@
 ## Samsung tools
 while true; do
-    read -p "Are you using a Samsung laptop and want samsung-tools installed? (Y/n)" yn
+    read -p "Are you using a Samsung laptop and want samsung-tools installed? (Y/n) " yn
     case $yn in
         [Yy]*)
-            sudo apt-add-repository ppa:voria/ppa
+            add_ppa voria/ppa
             sudo apt-get update
             sudo apt-get install samsung-tools xbindkeys-config
             break
@@ -15,11 +15,11 @@ done
 
 ## Intel drivers
 while true; do
-    read -p "Are you using Intel graphics and want to use the workaround for screen tearing? (Y/n)" yn
+    read -p "Are you using Intel graphics and want to use the workaround for screen tearing? (Y/n) " yn
     case $yn in
         [Yy]*)
-            sudo echo "CLUTTER_PAINT=disable-clipped-redraws:disable-culling" >> /etc/environment
-            sudo echo "CLUTTER_VBLANK=True" >> /etc/environment
+            echo "CLUTTER_PAINT=disable-clipped-redraws:disable-culling" | sudo tee -a /etc/environment
+            echo "CLUTTER_VBLANK=True" | sudo tee -a /etc/environment
             break
         ;;
         [Nn]*) break;;

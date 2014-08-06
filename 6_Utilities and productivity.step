@@ -1,14 +1,13 @@
 ## Add PPA's
-sudo apt-add-repository ppa:libreoffice/ppa
-sudo apt-add-repository ppa:yorba/ppa
-sudo apt-add-repository ppa:nilarimogard/webupd8
+add_ppa libreoffice/ppa
+add_ppa yorba/ppa
+add_ppa nilarimogard/webupd8
 
 ## Update + upgrade
 sudo apt-get update
-sudo apt-get dist-upgrade
+sudo apt-get dist-upgrade -y
 
 ## Install
 sudo apt-get install -y geary chromium-browser
 sudo apt-get install -y stellarium cheese mkvtoolnix-gui
-sudo apt-get install -y steam
-sudo apt-get install -y skype
+sudo apt-get install -y skype nautilus-dropbox

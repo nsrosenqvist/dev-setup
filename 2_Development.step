@@ -1,12 +1,12 @@
 ## Add PPA's
-sudo apt-add-repository ppa:chris-lea/node.js
-sudo apt-add-repository ppa:webupd8team/atom
-sudo apt-add-repository ppa:webupd8team/sublime-text-2
-sudo apt-add-repository ppa:ubuntu-sdk-team/ppa
+add_ppa chris-lea/node.js
+add_ppa webupd8team/atom
+add_ppa webupd8team/sublime-text-2
+add_ppa ubuntu-sdk-team/ppa
 
 ## Update + upgrade
 sudo apt-get update
-sudo apt-get dist-upgrade
+sudo apt-get dist-upgrade -y
 
 ## Install
 sudo apt-get install -y ubuntu-sdk
@@ -59,12 +59,17 @@ sudo apt-get install -y php5-cli php5-common php5-curl php5-json php5-mcrypt
 ## Composer
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
+## Add Laravel alias
+echo "" >> ~/.bashrc
+echo "## Add Laravel aliases" >> ~/.bashrc
+echo "alias artisan=\"php artisan\"" >> ~/.bashrc
+
 ## Java
 while true; do
     read -p "Do you want to install Oracle Java? If no, OpenJDK will be installed instead. (Y/n) " yn
     case $yn in
         [Yy]*)
-            sudo apt-add-repository ppa:webupd8team/java
+            add_ppa webupd8team/java
             sudo apt-get update
             sudo apt-get install oracle-java8-installer
             break

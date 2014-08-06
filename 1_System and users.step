@@ -1,9 +1,9 @@
 ## Add PPA's
-sudo apt-add-repository ppa:webupd8team/y-ppa-manager
+add_ppa webupd8team/y-ppa-manager
 
 ## Update + upgrade
 sudo apt-get update
-sudo apt-get dist-upgrade
+sudo apt-get dist-upgrade -y
 
 ## Install
 sudo apt-get install -y gufw hardinfo
@@ -33,6 +33,3 @@ echo "#------------------#" >> ~/.bashrc
 echo "" >> ~/.bashrc
 echo "## Add ~/.bin to path" >> ~/.bashrc
 echo "export PATH=\"$PATH:~/.bin\"" >> ~/.bashrc
-echo "" >> ~/.bashrc
-echo "## Add Laravel aliases" >> ~/.bashrc
-echo "alias artisan=\"php artisan\"" >> ~/.bashrc
