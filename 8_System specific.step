@@ -1,0 +1,27 @@
+## Samsung tools
+while true; do
+    read -p "Are you using a Samsung laptop and want samsung-tools installed? (Y/n)" yn
+    case $yn in
+        [Yy]*)
+            sudo apt-add-repository ppa:voria/ppa
+            sudo apt-get update
+            sudo apt-get install samsung-tools xbindkeys-config
+        ;;
+        [Nn]*) break;;
+        *) echo "Please answer yes or no.";;
+    esac
+do
+
+## Intel drivers
+while true; do
+    read -p "Are you using Intel graphics and want to use the workaround for screen tearing? (Y/n)" yn
+    case $yn in
+        [Yy]*)
+            sudo echo "CLUTTER_PAINT=disable-clipped-redraws:disable-culling" >> /etc/environment
+            sudo echo "CLUTTER_VBLANK=True" >> /etc/environment
+        ;;
+        [Nn]*) break;;
+        *) echo "Please answer yes or no.";;
+    esac
+do
+

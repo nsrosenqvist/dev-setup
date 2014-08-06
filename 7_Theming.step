@@ -1,0 +1,8 @@
+## Add PPA's
+sudo apt-add-repository ppa:moka/stable
+
+## Update + upgrade
+sudo apt-get update
+
+## Install
+sudo apt-get install -y moka-gnome-shell-theme moka-icon-theme

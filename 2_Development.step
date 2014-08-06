@@ -1,0 +1,87 @@
+## Add PPA's
+sudo apt-add-repository ppa:chris-lea/node.js
+sudo apt-add-repository ppa:webupd8team/atom
+sudo apt-add-repository ppa:webupd8team/sublime-text-2
+sudo apt-add-repository ppa:ubuntu-sdk-team/ppa
+
+## Update + upgrade
+sudo apt-get update
+sudo apt-get dist-upgrade
+
+sudo apt-get install -y ubuntu-sdk-team
+sudo apt-get install -y deluge filezilla meld virtualbox-qt gnome-boxes pyrenamer curl
+sudo apt-get install -y sublime-text
+
+## Git
+sudo apt-get install -y git gitg 
+git config --global user.email "$user_email"
+git config --global user.name "$user_name"
+git config --global push.default simple
+
+## Ruby
+sudo apt-get install -y ruby ruby-bundler rubygems rake
+gem update && gem install compass
+
+## NodeJS
+sudo apt-get install -y nodejs
+
+# Either create or empty ~/.npm
+if [ -d ~/.npm ]; then
+    cd ~/.npm
+    rm -R *
+else
+    mkdir ~/.npm
+    cd ~/.npm
+fi
+ 
+# Set npm paths
+npm config set prefix ~/.npm
+ 
+mkdir ~/.npm/cache
+npm config set cache ~/.npm/cache
+ 
+# Add ~/.npm/bin to PATH
+echo "" >> ~/.bashrc
+echo "## Add ~/.npm/bin to path" >> ~/.bashrc
+echo "export PATH=$HOME/.npm/bin:$PATH" >> ~/.bashrc
+
+# Install common node packages
+npm install -g grunt-cli bower yo grunt-contrib-compass grunt-contrib
+
+## Atom
+sudo apt-get install atom
+apm stars --install
+
+## PHP
+sudo apt-get install -y php5-cli php5-common php5-curl php5-json php5-mcrypt
+
+## Composer
+curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+
+## Java
+while true; do
+    read -p "Do you want to install Oracle Java? (Y/n)" yn
+    case $yn in
+        [Yy]*)
+            sudo apt-add-repository ppa:webupd8team/java
+            sudo apt-get update
+            sudo apt-get install oracle-java8-installer
+        ;;
+        [Nn]*)
+            ## OpenJDK
+            while true; do
+                read -p "Do you want to install OpenJDK? (Y/n)" yn
+                case $yn in
+                    [Yy]*)
+                        sudo apt-get install -y openjdk-7-jre
+                    ;;
+                    [Nn]*) break;;
+                    *) echo "Please answer yes or no.";;
+                esac
+            do
+            break
+        ;;
+        *) echo "Please answer yes or no.";;
+    esac
+do
+

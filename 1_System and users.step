@@ -1,0 +1,19 @@
+## Add PPA's
+sudo apt-add-repository ppa:webupd8team/y-ppa-manager
+
+## Update + upgrade
+sudo apt-get update
+sudo apt-get dist-upgrade
+
+## Install
+sudo apt-get install -y gufw hardinfo
+sudo apt-get install -y ubuntu-restricted-extras cifs-utils tree
+sudo apt-get install -y gnome-shell gnome-tweak-tool
+sudo apt-get install -y y-ppa-manager
+
+## Configure
+# Add Sofia
+sudo adduser sofia
+me=$(whoami)
+sudo adduser sofia "$me"
+sudo adduser "$me" sofia

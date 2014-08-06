@@ -1,0 +1,22 @@
+## Add PPA's
+sudo apt-add-repository ppa:inkscape.dev/ppa
+sudo apt-add-repository ppa:irie/blender
+sudo apt-add-repository ppa:otto-kesselgulasch/gimp
+sudo apt-add-repository ppa:pmjdebruijn/darktable-release
+sudo apt-add-repository ppa:sunab/sigil-git
+sudo apt-add-repository ppa:achadwick/mypaint-testing
+sudo apt-add-repository ppa:gstreamer-developers/ppa
+
+## Update + upgrade
+sudo apt-get update
+sudo apt-get dist-upgrade
+
+## Install
+sudo apt-get install -y inkscape
+sudo apt-get install -y gimp gimp-plugin-registry gimp-data-extras gimp-gmic
+sudo apt-get install -y blender
+sudo apt-get install -y darktable
+sudo apt-get install -y mypaint mypaint-data-hires
+sudo apt-get install -y sigil
+sudo apt-get install -y pitivi
+sudo apt-get install -y scribus retext

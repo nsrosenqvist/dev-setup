@@ -1,0 +1,21 @@
+## Add PPA's
+sudo apt-add-repository ppa:tomahawk/ppa
+sudo apt-add-repository ppa:videolan/stable-daily
+sudo apt-add-repository ppa:pipelight/stable
+echo -e "\n## Spotify\ndeb http://repository.spotify.com stable non-free" >> /etc/apt/sources.list && sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 94558F59
+
+## Update + upgrade
+sudo apt-get update
+sudo apt-get dist-upgrade
+
+## Install
+sudo apt-get install -y tomahawk spotify-client
+sudo apt-get install -y vlc
+sudo apt-get install -y easytag
+
+## Netflix
+sudo apt-get install -y --install-recommends pipelight-multi
+sudo pipelight-plugin --update
+sudo pipelight-plugin --enable silverlight
+sudo pipelight-plugin --system-check
+sudo apt-get install -y netflix-desktop
