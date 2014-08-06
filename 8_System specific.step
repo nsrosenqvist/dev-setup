@@ -15,7 +15,7 @@ done
 
 ## Intel drivers
 while true; do
-    read -p "Are you using Intel graphics and want to use the workaround for screen tearing? (Y/n) " yn
+    read -p "Are you using Intel graphics and want to use the workaround for screen tearing (https://bugs.freedesktop.org/show_bug.cgi?id=37686)? (Y/n) " yn
     case $yn in
         [Yy]*)
             echo "CLUTTER_PAINT=disable-clipped-redraws:disable-culling" | sudo tee -a /etc/environment
