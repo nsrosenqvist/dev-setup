@@ -20,7 +20,7 @@ git config --global user.name "$user_name"
 git config --global push.default simple
 
 ## Ruby
-sudo apt-get install -y ruby ruby-bundler rubygems rake
+sudo apt-get install -y ruby ruby-bundler rake
 gem update && gem install compass
 
 ## NodeJS
