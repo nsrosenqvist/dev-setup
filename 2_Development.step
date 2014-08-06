@@ -21,7 +21,7 @@ git config --global push.default simple
 
 ## Ruby
 sudo apt-get install -y ruby ruby-bundler rake
-gem update && gem install compass
+sudo gem update && sudo gem install compass
 
 ## NodeJS
 sudo apt-get install -y nodejs
