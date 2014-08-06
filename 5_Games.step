@@ -9,3 +9,80 @@ sudo apt-get update
 ## Install
 sudo apt-get install -y steam
 sudo apt-get install -y playonlinux
+
+## Minecraft
+while true; do
+    read -p "Do you want to install Minecraft? (Y/n) " yn
+    case $yn in
+        [Yy]*)
+            ## Create Minecraft resources
+            mcdir="/opt/minecraft"
+            mclauncher="$mcdir/minecraft.desktop"
+            mcscript="$mcdir/minecraft/minecraft"
+
+            prevpwd="$(pwd)"
+            sudo mkdir -p "$mcdir"
+            cd "$mcdir"
+            wget "https://s3.amazonaws.com/Minecraft.Download/launcher/Minecraft.jar" -O Minecraft.jar
+            wget "http://icons.iconarchive.com/icons/chrisl21/minecraft/512/3D-Grass-icon.png" -O minecraft.png
+            cd "$prevpwd"
+
+            sudo touch "$mcscript"
+            sudo touch "$mclauncher"
+            sudo chmod -R 755 "$mcdir"
+            sudo chmod +x "$mcscript"
+            sudo chmod +x "$mcdir/Minecraft.jar"
+
+            ## Create a launcher
+            echo "[Desktop Entry]"                      >> "$mclauncher"
+            echo "Name=Minecraft"                       >> "$mclauncher"
+            echo "Comment=Play Minecraft"               >> "$mclauncher"
+            echo "GenericName=Minecraft"                >> "$mclauncher"
+            echo "Keywords=Games"                       >> "$mclauncher"
+            echo "Exec=bash /opt/minecraft/minecraft"   >> "$mclauncher"
+            echo "Terminal=false"                       >> "$mclauncher"
+            echo "X-MultipleArgs=false"                 >> "$mclauncher"
+            echo "Type=Application"                     >> "$mclauncher"
+            echo "Icon=/opt/minecraft/minecraft.png"    >> "$mclauncher"
+            echo "Categories=Game;"                     >> "$mclauncher"
+            echo "MimeType=;"                           >> "$mclauncher"
+            echo "StartupNotify=true"                   >> "$mclauncher"
+            echo "Actions=MinecraftFolder"              >> "$mclauncher"
+            echo ""                                     >> "$mclauncher"
+            echo "[Desktop Action MinecraftFolder]"     >> "$mclauncher"
+            echo "Name=Open .minecraft folder"          >> "$mclauncher"
+            echo "Exec=nautilus ~/.minecraft"           >> "$mclauncher"
+            echo "OnlyShowIn=Unity;"                    >> "$mclauncher"
+
+            ## Symlink launcher
+            sudo ln -s "$mclauncher" /usr/share/applications/minecraft.desktop
+
+            while true; do
+                read -p "Are you using Oracle Java? If not, OpenJDK is assumed. (Y/n) " yn
+                case $yn in
+                    ## Oracle Java
+                    [Yy]*)
+                        echo "#!/bin/bash"                                                          >> "$mcscript"
+                        echo "export LD_LIBRARY_PATH=\"/usr/lib/jvm/java-8-oracle/jre/lib/amd64/\"" >> "$mcscript"
+                        echo "java -jar /opt/minecraft/Minecraft.jar"                               >> "$mcscript"
+                        break
+                    ;;
+                    ## OpenJDK
+                    [Nn]*)
+                        echo "#!/bin/bash"                                                                  >> "$mcscript"
+                        echo "export LD_LIBRARY_PATH=\"/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64\""   >> "$mcscript"
+                        echo "java -jar /opt/minecraft/Minecraft.jar"                                       >> "$mcscript"
+                        break
+                    ;;
+                    *) echo "Please answer yes or no.";;
+                esac
+            done
+            break
+        ;;
+        [Nn]*) break;;
+        *) echo "Please answer yes or no.";;
+    esac
+done
+
+
+
