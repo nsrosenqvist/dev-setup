@@ -18,6 +18,11 @@ me=$(whoami)
 sudo adduser sofia "$me"
 sudo adduser "$me" sofia
 
+# Add empty template files
+touch "~/Templates/Text file.txt"
+sudo touch "/home/sofia/Templates/Text file.txt"
+sudo chown sofia:sofia "/home/sofia/Templates/Text file.txt"
+
 # Create ~/.bin and edit ~/.bashrc
 mkdir ~/.bin
 
@@ -31,6 +36,3 @@ echo "export PATH=\"$PATH:~/.bin\"" >> ~/.bashrc
 echo "" >> ~/.bashrc
 echo "## Add Laravel aliases" >> ~/.bashrc
 echo "alias artisan=\"php artisan\"" >> ~/.bashrc
-
-
-
