@@ -52,7 +52,7 @@ while true; do
             echo "Terminal=false"                       | sudo tee -a "$mclauncher"
             echo "X-MultipleArgs=false"                 | sudo tee -a "$mclauncher"
             echo "Type=Application"                     | sudo tee -a "$mclauncher"
-            echo "Icon=\"$mcdir/minecraft.png\""        | sudo tee -a "$mclauncher"
+            echo "Icon=$mcdir/minecraft.png"            | sudo tee -a "$mclauncher"
             echo "Categories=Game;"                     | sudo tee -a "$mclauncher"
             echo "MimeType=;"                           | sudo tee -a "$mclauncher"
             echo "StartupNotify=true"                   | sudo tee -a "$mclauncher"
