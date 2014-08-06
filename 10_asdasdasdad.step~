@@ -1,0 +1,4 @@
+echo "step 10"
+
+read reply
+exit
