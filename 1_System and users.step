@@ -27,7 +27,7 @@ echo "#      CUSTOM      #" >> ~/.bashrc
 echo "#------------------#" >> ~/.bashrc
 echo "" >> ~/.bashrc
 echo "## Add ~/.bin to path" >> ~/.bashrc
-echo "export PATH="$PATH:~/.bin" >> ~/.bashrc
+echo "export PATH=\"$PATH:~/.bin\"" >> ~/.bashrc
 echo "" >> ~/.bashrc
 echo "## Add Laravel aliases" >> ~/.bashrc
 echo "alias artisan=\"php artisan\"" >> ~/.bashrc

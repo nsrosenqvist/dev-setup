@@ -44,7 +44,7 @@ npm config set cache ~/.npm/cache
 # Add ~/.npm/bin to PATH
 echo "" >> ~/.bashrc
 echo "## Add ~/.npm/bin to path" >> ~/.bashrc
-echo "export PATH=$HOME/.npm/bin:$PATH" >> ~/.bashrc
+echo "export PATH=\"$HOME/.npm/bin:$PATH\"" >> ~/.bashrc
 
 # Install common node packages
 npm install -g grunt-cli bower yo grunt-contrib-compass grunt-contrib
@@ -61,28 +61,20 @@ curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --fil
 
 ## Java
 while true; do
-    read -p "Do you want to install Oracle Java? (Y/n)" yn
+    read -p "Do you want to install Oracle Java? If no, OpenJDK will be installed instead. (Y/n) " yn
     case $yn in
         [Yy]*)
             sudo apt-add-repository ppa:webupd8team/java
             sudo apt-get update
             sudo apt-get install oracle-java8-installer
+            break
         ;;
         [Nn]*)
             ## OpenJDK
-            while true; do
-                read -p "Do you want to install OpenJDK? (Y/n)" yn
-                case $yn in
-                    [Yy]*)
-                        sudo apt-get install -y openjdk-7-jre
-                    ;;
-                    [Nn]*) break;;
-                    *) echo "Please answer yes or no.";;
-                esac
-            do
+            sudo apt-get install -y openjdk-7-jre
             break
         ;;
         *) echo "Please answer yes or no.";;
     esac
-do
+done
 

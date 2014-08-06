@@ -6,11 +6,12 @@ while true; do
             sudo apt-add-repository ppa:voria/ppa
             sudo apt-get update
             sudo apt-get install samsung-tools xbindkeys-config
+            break
         ;;
         [Nn]*) break;;
         *) echo "Please answer yes or no.";;
     esac
-do
+done
 
 ## Intel drivers
 while true; do
@@ -19,9 +20,10 @@ while true; do
         [Yy]*)
             sudo echo "CLUTTER_PAINT=disable-clipped-redraws:disable-culling" >> /etc/environment
             sudo echo "CLUTTER_VBLANK=True" >> /etc/environment
+            break
         ;;
         [Nn]*) break;;
         *) echo "Please answer yes or no.";;
     esac
-do
+done
 
