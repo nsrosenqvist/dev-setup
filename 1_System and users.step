@@ -33,3 +33,12 @@ echo "#------------------#" >> ~/.bashrc
 echo "" >> ~/.bashrc
 echo "## Add ~/.bin to path" >> ~/.bashrc
 echo "export PATH=\"$PATH:~/.bin\"" >> ~/.bashrc
+
+# Add projects alias
+if [ ! -d "~/Projects" ]; then
+    mkdir "~/Projects"
+fi
+
+echo "" >> ~/.bashrc
+echo "## projects alias" >> ~/.bashrc
+echo "alias projects=\"cd ~/Projects\"" >> ~/.bashrc
