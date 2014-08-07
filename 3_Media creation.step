@@ -16,8 +16,7 @@ sudo apt-get install -y gimp gimp-plugin-registry gimp-data-extras gimp-gmic
 sudo apt-get install -y blender
 sudo apt-get install -y darktable
 sudo apt-get install -y mypaint mypaint-data-extras
-sudo apt-get install -y sigil
+sudo apt-get install -y sigil scribus retext typecatcher
 sudo apt-get install -y pitivi
-sudo apt-get install -y scribus retext
 sudo apt-get install -y sound-juicer
 sudo apt-get install -y dvdrip devede
