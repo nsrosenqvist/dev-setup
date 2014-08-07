@@ -11,6 +11,6 @@ sudo apt-get update
 sudo apt-get dist-upgrade -y
 
 ## Install
-sudo apt-get install -y geary chromium-browser
+sudo apt-get install -y geary chromium-browser remmina
 sudo apt-get install -y stellarium cheese mkvtoolnix-gui
 sudo apt-get install -y skype nautilus-dropbox
