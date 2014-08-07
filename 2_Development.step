@@ -47,7 +47,7 @@ echo "## Add ~/.npm/bin to path" >> ~/.bashrc
 echo "export PATH=\"$HOME/.npm/bin:$PATH\"" >> ~/.bashrc
 
 # Install common node packages
-npm install -g grunt-cli bower yo grunt-contrib-compass grunt-contrib
+npm install -g grunt-cli bower yo
 
 ## Atom
 sudo apt-get install atom
