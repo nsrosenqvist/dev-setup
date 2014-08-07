@@ -44,7 +44,7 @@ npm config set cache ~/.npm/cache
 # Add ~/.npm/bin to PATH
 echo "" >> ~/.bashrc
 echo "## Add ~/.npm/bin to path" >> ~/.bashrc
-echo "export PATH=\"$HOME/.npm/bin:$PATH\"" >> ~/.bashrc
+echo 'export PATH="$HOME/.npm/bin:$PATH"' >> ~/.bashrc
 
 # Install common node packages
 npm install -g grunt-cli bower yo
