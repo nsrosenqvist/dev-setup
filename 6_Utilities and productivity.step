@@ -3,6 +3,9 @@ add_ppa libreoffice/ppa
 add_ppa yorba/ppa
 add_ppa nilarimogard/webupd8
 
+## Enable partner repository
+sudo sed -i "/^# deb .*partner/ s/^# //" /etc/apt/sources.list
+
 ## Update + upgrade
 sudo apt-get update
 sudo apt-get dist-upgrade -y
