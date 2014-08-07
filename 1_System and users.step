@@ -7,7 +7,7 @@ sudo apt-get dist-upgrade -y
 
 ## Install
 sudo apt-get install -y gufw hardinfo
-sudo apt-get install -y ubuntu-restricted-extras cifs-utils tree
+sudo apt-get install -y ubuntu-restricted-extras cifs-utils tree testdisk
 sudo apt-get install -y gnome-shell gnome-tweak-tool
 sudo apt-get install -y y-ppa-manager
 
