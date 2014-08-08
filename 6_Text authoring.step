@@ -1,0 +1,9 @@
+## Add PPA's
+add_ppa sunab/sigil-git
+
+## Update + upgrade
+sudo apt-get update
+sudo apt-get dist-upgrade -y
+
+## Install
+sudo apt-get install -y sigil scribus retext typecatcher

@@ -4,7 +4,6 @@ add_ppa irie/blender
 add_ppa otto-kesselgulasch/gimp
 add_ppa pmjdebruijn/darktable-release
 add_ppa sunab/sigil-git
-add_ppa gstreamer-developers/ppa
 
 ## Update + upgrade
 sudo apt-get update
@@ -16,7 +15,4 @@ sudo apt-get install -y gimp gimp-plugin-registry gimp-data-extras gimp-gmic
 sudo apt-get install -y blender
 sudo apt-get install -y darktable
 sudo apt-get install -y mypaint mypaint-data-extras
-sudo apt-get install -y sigil scribus retext typecatcher
-sudo apt-get install -y pitivi
-sudo apt-get install -y sound-juicer
-sudo apt-get install -y dvdrip devede
+sudo apt-get install -y typecatcher

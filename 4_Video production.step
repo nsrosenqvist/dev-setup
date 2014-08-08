@@ -1,0 +1,11 @@
+## Add PPA's
+add_ppa gstreamer-developers/ppa
+
+## Update + upgrade
+sudo apt-get update
+sudo apt-get dist-upgrade -y
+
+## Install
+sudo apt-get install -y pitivi
+sudo apt-get install -y devede
+sudo apt-get install -y blender
