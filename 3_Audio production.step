@@ -1,6 +1,39 @@
 ## Add PPA's
-# TODO
+add_ppa ppa:kxstudio-debian/kxstudio
+
+## Update software sources
+sudo apt-get update
+
+## Install kxstudio-repos
+sudo apt-get -y install kxstudio-repos
 
 ## Update + upgrade
 sudo apt-get update
 sudo apt-get dist-upgrade -y
+
+## Install JACK + Cadence
+sudo apt-get install -y cadence claudia
+
+## Install monitoring apps
+sudo apt-get install -y jaaa meterbridge
+
+## Install plugins
+sudo apt-get install -y kxstudio-meta-audio-plugins ubuntustudio-audio-plugins
+
+## Install DAW's
+sudo apt-get install -y qtractor sunvox luppp lmmsardour3
+
+## Add users to audio group
+sudo addgroup $(whoami) audio
+sudo addgroup sofia audio
+
+## Tune VM swappiness
+echo "# Studio Performance Tweak" | sudo tee -a /etc/sysctl.d/30-proaudio.conf
+echo "vm.swappiness = 10" | sudo tee -a /etc/sysctl.d/30-proaudio.conf
+
+## Make clock devices accessible
+echo "KERNEL==\"rtc0\", GROUP=\"audio\"" | sudo tee -a /etc/udev/rules.d/50-audio-timing.rules
+echo "KERNEL==\"hpet\", GROUP=\"audio\"" | sudo tee -a /etc/udev/rules.d/50-audio-timing.rules
+
+## ALSA loopback driver
+echo "snd_aloop" | sudo tee -a /etc/modules 
