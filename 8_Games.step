@@ -6,9 +6,8 @@ while true; do
     read -p "Do you want to install PlayOnLinux? (y/n) " yn
     case $yn in
         [Yy]*)
-            codename="$(lsb_release --codename | cut -f2)"
             wget -q "http://deb.playonlinux.com/public.gpg" -O- | sudo apt-key add -
-            sudo wget "http://deb.playonlinux.com/playonlinux_${codename}.list" -O /etc/apt/sources.list.d/playonlinux.list
+            sudo wget "http://deb.playonlinux.com/playonlinux_${release_name}.list" -O /etc/apt/sources.list.d/playonlinux.list
 
             sudo apt-get update
             sudo apt-get install -y playonlinux
