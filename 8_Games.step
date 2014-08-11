@@ -3,7 +3,7 @@ sudo apt-get install -y steam
 
 ## PlayOnLinux
 while true; do
-    read -p "Do you want to install PlayOnLinux? (Y/n) " yn
+    read -p "Do you want to install PlayOnLinux? (y/n) " yn
     case $yn in
         [Yy]*)
             codename="$(lsb_release --codename | cut -f2)"
@@ -21,7 +21,7 @@ done
 
 ## Minecraft
 while true; do
-    read -p "Do you want to install Minecraft? (Y/n) " yn
+    read -p "Do you want to install Minecraft? (y/n) " yn
     case $yn in
         [Yy]*)
             ## Create Minecraft resources
@@ -67,7 +67,7 @@ while true; do
             sudo ln -s "$mclauncher" /usr/share/applications/minecraft.desktop
 
             while true; do
-                read -p "Are you using Oracle Java? If not, OpenJDK is assumed. (Y/n) " yn
+                read -p "Are you using Oracle Java? If not, OpenJDK is assumed. (y/n) " yn
                 case $yn in
                     ## Oracle Java
                     [Yy]*)

@@ -14,7 +14,7 @@ sudo apt-get install -y deluge filezilla meld virtualbox-qt gnome-boxes pyrename
 sudo apt-get install -y sublime-text
 
 ## Git
-sudo apt-get install -y git gitg 
+sudo apt-get install -y git gitg
 git config --global user.email "$user_email"
 git config --global user.name "$user_name"
 git config --global push.default simple
@@ -34,13 +34,13 @@ else
     mkdir ~/.npm
     cd ~/.npm
 fi
- 
+
 # Set npm paths
 npm config set prefix ~/.npm
- 
+
 mkdir ~/.npm/cache
 npm config set cache ~/.npm/cache
- 
+
 # Add ~/.npm/bin to PATH
 echo "" >> ~/.bashrc
 echo "## Add ~/.npm/bin to path" >> ~/.bashrc
@@ -66,7 +66,7 @@ echo "alias artisan=\"php artisan\"" >> ~/.bashrc
 
 ## Java
 while true; do
-    read -p "Do you want to install Oracle Java? If no, OpenJDK will be installed instead. (Y/n) " yn
+    read -p "Do you want to install Oracle Java? If no, OpenJDK will be installed instead. (y/n) " yn
     case $yn in
         [Yy]*)
             add_ppa webupd8team/java

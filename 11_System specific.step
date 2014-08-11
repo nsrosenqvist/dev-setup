@@ -1,6 +1,6 @@
 ## Samsung tools
 while true; do
-    read -p "Are you using a Samsung laptop and want samsung-tools installed? (Y/n) " yn
+    read -p "Are you using a Samsung laptop and want samsung-tools installed? (y/n) " yn
     case $yn in
         [Yy]*)
             add_ppa voria/ppa
@@ -15,7 +15,7 @@ done
 
 ## Intel drivers
 while true; do
-    read -p "Are you using Intel graphics and want to use the workaround for screen tearing (https://bugs.freedesktop.org/show_bug.cgi?id=37686)? (Y/n) " yn
+    read -p "Are you using Intel graphics and want to use the workaround for screen tearing (https://bugs.freedesktop.org/show_bug.cgi?id=37686)? (y/n) " yn
     case $yn in
         [Yy]*)
             echo "CLUTTER_PAINT=disable-clipped-redraws:disable-culling" | sudo tee -a /etc/environment

@@ -16,7 +16,7 @@ sudo bash /usr/share/doc/libdvdread4/install-css.sh
 
 ## Spotify
 while true; do
-    read -p "Do you want to install Spotify? (Y/n) " yn
+    read -p "Do you want to install Spotify? (y/n) " yn
     case $yn in
         [Yy]*)
             echo -e "\n## Spotify\ndeb http://repository.spotify.com stable non-free" | sudo tee -a /etc/apt/sources.list && sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 94558F59
@@ -31,7 +31,7 @@ done
 
 ## Netflix
 while true; do
-    read -p "Do you want to install Netflix? (Y/n) " yn
+    read -p "Do you want to install Netflix? (y/n) " yn
     case $yn in
         [Yy]*)
             add_ppa pipelight/stable
