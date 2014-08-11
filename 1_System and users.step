@@ -23,6 +23,11 @@ touch "~/Templates/Text file.txt"
 sudo touch "/home/sofia/Templates/Text file.txt"
 sudo chown sofia:sofia "/home/sofia/Templates/Text file.txt"
 
+# Edit umask
+echo -e "\nSet the default umask to 002 for easier file sharing between users.\n"
+read -p "Press any key to continue... " -n 1 dummy
+sudo nano /etc/login.defs
+
 # Create ~/.bin and edit ~/.bashrc
 mkdir ~/.bin
 

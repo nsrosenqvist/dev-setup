@@ -18,10 +18,20 @@ sudo apt-get install -y cadence claudia
 sudo apt-get install -y jaaa meterbridge
 
 ## Install plugins
-sudo apt-get install -y kxstudio-meta-audio-plugins ubuntustudio-audio-plugins
+while true; do
+    read -p "Do you want to install the KXStudio and Ubuntu Studio audio plugins? (y/n) " yn
+    case $yn in
+        [Yy]*)
+            sudo apt-get install -y kxstudio-meta-audio-plugins ubuntustudio-audio-plugins
+            break
+        ;;
+        [Nn]*) break;;
+        *) echo "Please answer yes or no.";;
+    esac
+done
 
 ## Install DAW's
-sudo apt-get install -y qtractor sunvox luppp lmmsardour3
+sudo apt-get install -y qtractor sunvox luppp lmmsardour3 audacity
 
 ## Add users to audio group
 sudo addgroup $(whoami) audio
@@ -36,4 +46,9 @@ echo "KERNEL==\"rtc0\", GROUP=\"audio\"" | sudo tee -a /etc/udev/rules.d/50-audi
 echo "KERNEL==\"hpet\", GROUP=\"audio\"" | sudo tee -a /etc/udev/rules.d/50-audio-timing.rules
 
 ## ALSA loopback driver
-echo "snd_aloop" | sudo tee -a /etc/modules 
+echo "snd_aloop" | sudo tee -a /etc/modules
+
+## Set noatime on filesystems
+echo -e "\nSet \"noatime\" on filesystems used for audio production.\n"
+read -p "Press any key to continue... " -n 1 dummy
+sudo nano /etc/fstab
