@@ -5,7 +5,7 @@ while true; do
         [Yy]*)
             add_ppa voria/ppa
             sudo apt-get update
-            sudo apt-get install samsung-tools xbindkeys-config
+            sudo apt-get install -y samsung-tools xbindkeys-config
             break
         ;;
         [Nn]*) break;;
