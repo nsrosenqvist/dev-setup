@@ -3,6 +3,7 @@ add_ppa chris-lea/node.js
 add_ppa webupd8team/atom
 add_ppa webupd8team/sublime-text-2
 add_ppa ubuntu-sdk-team/ppa
+add_ppa webupd8team/brackets
 
 ## Update + upgrade
 sudo apt-get update
@@ -50,8 +51,11 @@ echo 'export PATH="$HOME/.npm/bin:$PATH"' >> ~/.bashrc
 npm install -g grunt-cli bower yo
 
 ## Atom
-sudo apt-get install atom
+sudo apt-get install -y atom
 apm stars --install
+
+## Brackets
+sudo apt-get install -y brackets
 
 ## PHP
 sudo apt-get install -y php5-cli php5-common php5-curl php5-json php5-mcrypt
