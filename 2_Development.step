@@ -34,7 +34,7 @@ while true; do
             
             # Common gems
             sudo apt-get install -y ruby-bundler rake
-            sudo gem update && sudo gem install compass gollum
+            sudo gem update && sudo gem install compass gollum redcarpet github-markdown
 
             break
         ;;
