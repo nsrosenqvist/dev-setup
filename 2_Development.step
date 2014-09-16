@@ -1,18 +1,5 @@
-## Add PPA's
-add_ppa chris-lea/node.js
-add_ppa webupd8team/atom
-add_ppa webupd8team/sublime-text-2
-add_ppa ubuntu-sdk-team/ppa
-add_ppa webupd8team/brackets
-
-## Update + upgrade
-sudo apt-get update
-sudo apt-get dist-upgrade -y
-
-## Install
-sudo apt-get install -y ubuntu-sdk
+## Common dev tools
 sudo apt-get install -y deluge filezilla meld virtualbox-qt gnome-boxes pyrenamer curl glade
-sudo apt-get install -y sublime-text
 sudo apt-get install -y shunit2
 
 ## Git
@@ -22,52 +9,144 @@ git config --global user.name "$user_name"
 git config --global push.default simple
 
 ## Ruby
-sudo apt-get install -y ruby ruby-bundler rake
-sudo gem update && sudo gem install compass
+while true; do
+    read -p "Do you want to install Ruby? (y/n) " yn
+    case $yn in
+        [Yy]*)
+            while true; do
+                read -p "Do you want to install Ruby v2.1 from Brightbox PPA instead of the one in the default repositories? (y/n) " yn2
+                case $yn2 in
+                    [Yy]*)
+                        add_ppa brightbox/ruby-ng
+                        sudo apt-get update
+                        sudo apt-get install -y ruby2.1 ruby2.1-dev
+            
+                        break
+                    ;;
+                    [Nn]*)
+                        sudo apt-get install -y ruby ruby-dev
+                        
+                        break
+                    ;;
+                    *) echo "Please answer yes or no.";;
+                esac
+            done
+            
+            # Common gems
+            sudo apt-get install -y ruby-bundler rake
+            sudo gem update && sudo gem install compass gollum
 
-## NodeJS
-sudo apt-get install -y nodejs
+            break
+        ;;
+        [Nn]*) break;;
+        *) echo "Please answer yes or no.";;
+    esac
+done
 
-# Either create or empty ~/.npm
-if [ -d ~/.npm ]; then
-    cd ~/.npm
-    rm -R *
-else
-    mkdir ~/.npm
-    cd ~/.npm
-fi
+## Ubuntu SDK
+while true; do
+    read -p "Do you want to install the Ubuntu SDK? (y/n) " yn
+    case $yn in
+        [Yy]*)
+            add_ppa ubuntu-sdk-team/ppa
+            sudo apt-get update
+            sudo apt-get install -y ubuntu-sdk
 
-# Set npm paths
-npm config set prefix ~/.npm
+            break
+        ;;
+        [Nn]*) break;;
+        *) echo "Please answer yes or no.";;
+    esac
+done
 
-mkdir ~/.npm/cache
-npm config set cache ~/.npm/cache
+## Editors
+while true; do
+    read -p "Do you want to install extra text editors? (y/n) " yn
+    case $yn in
+        [Yy]*)
+            add_ppa webupd8team/atom
+            add_ppa webupd8team/sublime-text-2
+            add_ppa webupd8team/brackets
+            sudo apt-get update
+            
+            ## Sublime 2
+            sudo apt-get install -y sublime-text
 
-# Add ~/.npm/bin to PATH
-echo "" >> ~/.bashrc
-echo "## Add ~/.npm/bin to path" >> ~/.bashrc
-echo 'export PATH="$HOME/.npm/bin:$PATH"' >> ~/.bashrc
+            ## Atom
+            sudo apt-get install -y atom
+            apm stars --install
+            
+            ## Brackets
+            sudo apt-get install -y brackets
 
-# Install common node packages
-npm install -g grunt-cli bower yo
-
-## Atom
-sudo apt-get install -y atom
-apm stars --install
-
-## Brackets
-sudo apt-get install -y brackets
+            break
+        ;;
+        [Nn]*) break;;
+        *) echo "Please answer yes or no.";;
+    esac
+done
 
 ## PHP
-sudo apt-get install -y php5-cli php5-common php5-curl php5-json php5-mcrypt
+while true; do
+    read -p "Do you want to install PHP? (y/n) " yn
+    case $yn in
+        [Yy]*)
+            sudo apt-get install -y php5-cli php5-common php5-curl php5-json php5-mcrypt
 
-## Composer
-curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/bin --filename=composer
+            ## Composer
+            curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/bin --filename=composer
+            
+            ## Add Laravel alias
+            echo "" >> ~/.bashrc
+            echo "## Add Laravel aliases" >> ~/.bashrc
+            echo "alias artisan=\"php artisan\"" >> ~/.bashrc
 
-## Add Laravel alias
-echo "" >> ~/.bashrc
-echo "## Add Laravel aliases" >> ~/.bashrc
-echo "alias artisan=\"php artisan\"" >> ~/.bashrc
+            break
+        ;;
+        [Nn]*) break;;
+        *) echo "Please answer yes or no.";;
+    esac
+done
+
+## NodeJS
+while true; do
+    read -p "Do you want to install Node.js? (y/n) " yn
+    case $yn in
+        [Yy]*)
+            add_ppa chris-lea/node.js
+            sudo apt-get update
+            
+            sudo apt-get install -y nodejs
+
+            # Either create or empty ~/.npm
+            if [ -d ~/.npm ]; then
+                cd ~/.npm
+                rm -R *
+            else
+                mkdir ~/.npm
+                cd ~/.npm
+            fi
+            
+            # Set npm paths
+            npm config set prefix ~/.npm
+            
+            mkdir ~/.npm/cache
+            npm config set cache ~/.npm/cache
+            
+            # Add ~/.npm/bin to PATH
+            echo "" >> ~/.bashrc
+            echo "## Add ~/.npm/bin to path" >> ~/.bashrc
+            echo 'export PATH="$HOME/.npm/bin:$PATH"' >> ~/.bashrc
+            
+            # Install common node packages
+            npm install -g grunt-cli bower yo gulp
+            
+            break
+        ;;
+        [Nn]*) break;;
+        *) echo "Please answer yes or no.";;
+    esac
+done
 
 ## Java
 while true; do
@@ -87,4 +166,3 @@ while true; do
         *) echo "Please answer yes or no.";;
     esac
 done
-
