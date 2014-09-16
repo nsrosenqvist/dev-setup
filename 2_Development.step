@@ -1,6 +1,5 @@
 ## Common dev tools
-sudo apt-get install -y deluge filezilla meld virtualbox-qt gnome-boxes pyrenamer curl glade
-sudo apt-get install -y shunit2
+sudo apt-get install -y filezilla meld virtualbox-qt gnome-boxes pyrenamer curl glade shunit2 build-essential
 
 ## Git
 sudo apt-get install -y git gitg
@@ -33,7 +32,7 @@ while true; do
             done
             
             # Common gems
-            sudo apt-get install -y ruby-bundler rake
+            sudo apt-get install -y ruby-bundler rake zlib1g-dev libicu-dev
             sudo gem update && sudo gem install compass gollum redcarpet github-markdown
 
             break
