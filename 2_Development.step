@@ -92,10 +92,15 @@ while true; do
         [Yy]*)
             sudo apt-get install -y php5-cli php5-common php5-curl php5-json php5-mcrypt
 
-            ## Composer
+            # Composer
             curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/bin --filename=composer
             
-            ## Add Laravel alias
+            # Add ~/.composer/vendor/bin to path
+            echo "" >> ~/.bashrc
+            echo "## Add ~/.composer/vendor/bin to path" >> ~/.bashrc
+            echo 'export PATH="$HOME/.composer/vendor/bin:$PATH"' >> ~/.bashrc
+
+            # Add Laravel alias
             echo "" >> ~/.bashrc
             echo "## Add Laravel aliases" >> ~/.bashrc
             echo "alias artisan=\"php artisan\"" >> ~/.bashrc
