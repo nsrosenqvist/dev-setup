@@ -2,18 +2,18 @@
 function configure_user() {
 	local newuser=$1
 	local bashrc = "/home/$newuser/.bashrc"
-	
+
 	if [ -z "newuser" ]; fi
 		exit "Error! User must be specified"
 	fi
-	
+
 	# Add empty template files
 	sudo touch "/home/$newuser/Templates/Text file.txt"
 	sudo chown "$newuser:$newuser" "/home/$newuser/Templates/Text file.txt"
-	
+
 	# Create "/home/$newuser/.bin" and edit /home/$newuser/.bashrc
 	mkdir "/home/$newuser/.bin"
-	
+
 	echo "" >> "$bashrc"
 	echo "#------------------#" >> "$bashrc"
 	echo "#      CUSTOM      #" >> "$bashrc"
@@ -41,9 +41,9 @@ sudo ufw enable
 
 ## Configure
 # Add other users
-NEWUSERS=("sofia")
+
 ME=$(whoami)
-ALLUSERS=(${NEWUSERS[@]} $ME)
+
 SHAREFILES=1
 
 # Configure my account first
@@ -58,16 +58,20 @@ while true; do
     esac
 done
 
+read -p "Enter the user names of the new users: " input
+NEWUSERS=("$input")
+ALLUSERS=(${NEWUSERS[@]} $ME)
+
 for newuser in "${NEWUSERS[@}"; do
     sudo adduser $newuser
     configure_user $newuser
-	
+
 	if [ $SHAREFILES -eq 0 ]; then
 		for otheruser in "${ALLUSERS[@]}"; do
 			if [ $otheruser = $newuser ]; then
 				continue
 			fi
-	
+
 		    sudo adduser $otheruser $newuser
 		    sudo adduser $newuser $otheruser
 		done
@@ -89,7 +93,7 @@ while true; do
         	if [ ! -d "~/Projects" ]; then
 			    mkdir "~/Projects"
 			fi
-			
+
 			echo "" >> ~/.bashrc
 			echo "## projects alias" >> ~/.bashrc
 			echo "alias projects=\"cd ~/Projects\"" >> ~/.bashrc

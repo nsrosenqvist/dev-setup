@@ -19,18 +19,18 @@ while true; do
                         add_ppa brightbox/ruby-ng
                         sudo apt-get update
                         sudo apt-get install -y ruby2.1 ruby2.1-dev
-            
+
                         break
                     ;;
                     [Nn]*)
                         sudo apt-get install -y ruby ruby-dev
-                        
+
                         break
                     ;;
                     *) echo "Please answer yes or no.";;
                 esac
             done
-            
+
             # Common gems
             sudo apt-get install -y ruby-bundler rake zlib1g-dev libicu-dev
             sudo gem update && sudo gem install compass gollum redcarpet github-markdown
@@ -43,10 +43,13 @@ while true; do
 done
 
 ## Ubuntu SDK
+USDK_INSTALLED=1
+
 while true; do
     read -p "Do you want to install the Ubuntu SDK? (y/n) " yn
     case $yn in
         [Yy]*)
+            USDK_INSTALLED=0
             add_ppa ubuntu-sdk-team/ppa
             sudo apt-get update
             sudo apt-get install -y ubuntu-sdk
@@ -63,25 +66,42 @@ while true; do
     read -p "Do you want to install extra text editors? (y/n) " yn
     case $yn in
         [Yy]*)
-            add_ppa webupd8team/atom
-            add_ppa webupd8team/sublime-text-2
-            add_ppa webupd8team/brackets
-            sudo apt-get update
-            
-            ## Sublime 2
-            sudo apt-get install -y sublime-text
+            echo -e "\nsublime-text"
+            echo -e "brackets"
+            echo -e "atom"
+            echo -e "eclipse"
+            if [ $USDK_INSTALLED -eq 1 ]; then
+                echo -e "qtcreator"
+            fi
+            echo ""
+            read -p "Enter the editors you want to install: " input
+            EDITORS=("$input")
 
-            ## Atom
-            sudo apt-get install -y atom
-            apm stars --install
-            
-            ## Brackets
-            sudo apt-get install -y brackets
-
+            # Install the selected editors
+            for i in "${EDITORS[@]}"; do
+                case "${i,,}" in
+                    sublime-text)
+                        add_ppa webupd8team/sublime-text-2
+                        sudo apt-get update
+                        sudo apt-get install -y sublime-text
+                    brackets)
+                        add_ppa webupd8team/brackets
+                        sudo apt-get update
+                        sudo apt-get install -y brackets
+                    atom)
+                        add_ppa webupd8team/atom
+                        sudo apt-get update
+                        sudo apt-get install -y atom
+                        apm stars --install
+                    eclipse)
+                        sudo apt-get install eclipse
+                    qtcreator)
+                        sudo apt-get install qtcreator
+                esac
+            done
             break
         ;;
         [Nn]*) break;;
-        *) echo "Please answer yes or no.";;
     esac
 done
 
@@ -94,7 +114,7 @@ while true; do
 
             # Composer
             curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/bin --filename=composer
-            
+
             # Add ~/.composer/vendor/bin to path
             echo "" >> ~/.bashrc
             echo "## Add ~/.composer/vendor/bin to path" >> ~/.bashrc
@@ -119,7 +139,7 @@ while true; do
         [Yy]*)
             add_ppa chris-lea/node.js
             sudo apt-get update
-            
+
             sudo apt-get install -y nodejs
 
             # Either create or empty ~/.npm
@@ -130,21 +150,21 @@ while true; do
                 mkdir ~/.npm
                 cd ~/.npm
             fi
-            
+
             # Set npm paths
             npm config set prefix ~/.npm
-            
+
             mkdir ~/.npm/cache
             npm config set cache ~/.npm/cache
-            
+
             # Add ~/.npm/bin to PATH
             echo "" >> ~/.bashrc
             echo "## Add ~/.npm/bin to path" >> ~/.bashrc
             echo 'export PATH="$HOME/.npm/bin:$PATH"' >> ~/.bashrc
-            
+
             # Install common node packages
             npm install -g grunt-cli bower yo gulp
-            
+
             break
         ;;
         [Nn]*) break;;

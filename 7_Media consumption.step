@@ -45,23 +45,3 @@ while true; do
         *) echo "Please answer yes or no.";;
     esac
 done
-
-## Netflix
-while true; do
-    read -p "Do you want to install Netflix? (y/n) " yn
-    case $yn in
-        [Yy]*)
-            add_ppa pipelight/stable
-            sudo apt-get update
-
-            sudo apt-get install -y --install-recommends pipelight-multi
-            sudo pipelight-plugin --update
-            sudo pipelight-plugin --enable silverlight
-            sudo pipelight-plugin --system-check
-            sudo apt-get install -y netflix-desktop
-            break
-        ;;
-        [Nn]*) break;;
-        *) echo "Please answer yes or no.";;
-    esac
-done
