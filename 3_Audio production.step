@@ -2,7 +2,19 @@ while true; do
     read -p "Are you sure? This will also install JACK, an alternative audio server and it might mess up your system. (y/n) " yn
     case $yn in
         [Yy]*) break;;
-        [Nn]*) exit 0; break;;
+        [Nn]*) 
+            while true; do
+                read -p "But you do want Audacity, don't you? (y/n) " yn
+                case $yn in
+                    [Yy]*) 
+                        sudo apt-get install -y audacity
+                    break;;
+                    [Nn]*) break;;
+                    *) echo "Please answer yes or no.";;
+                esac
+            done
+            exit 0;
+        break;;
         *) echo "Please answer yes or no.";;
     esac
 done
