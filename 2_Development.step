@@ -105,12 +105,51 @@ while true; do
     esac
 done
 
+## Databases
+MYSQL_INSTALLED=1
+SQLITE_INSTALLED=1
+
+while true; do
+    read -p "Do you want to install databases? (y/n) " yn
+    case $yn in
+        [Yy]*)
+            echo -e "\MySQL"
+            echo -e "SQLite"
+            echo ""
+            read -p "Enter the databases you want to install: " input
+            DBS=("$input")
+
+            # Install the selected editors
+            for i in "${DBS[@]}"; do
+                case "${i,,}" in
+                    mysql)
+                    	MYSQL_INSTALLED=0
+                        sudo apt-get install -y mysql
+                    sqlite)
+                    	SQLITE_INSTALLED=0
+                        sudo apt-get install -y sqlite
+                esac
+            done
+            break
+        ;;
+        [Nn]*) break;;
+    esac
+done
+
 ## PHP
 while true; do
     read -p "Do you want to install PHP? (y/n) " yn
     case $yn in
         [Yy]*)
             sudo apt-get install -y php5-cli php5-common php5-curl php5-json php5-mcrypt
+            
+            if [ MYSQL_INSTALLED -eq 0 ]; then
+            	sudo apt-get install -y php5-mysql
+            fi
+            
+            if [ SQLITE_INSTALLED -eq 0 ]; then
+            	sudo apt-get install -y php5-sqlite
+            fi
 
             # Composer
             curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/bin --filename=composer
@@ -179,7 +218,7 @@ while true; do
         [Yy]*)
             add_ppa webupd8team/java
             sudo apt-get update
-            sudo apt-get install oracle-java8-installer
+            sudo apt-get install -y oracle-java8-installer
             break
         ;;
         [Nn]*)
