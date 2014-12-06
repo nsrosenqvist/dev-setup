@@ -39,32 +39,30 @@ sudo apt-get install -y y-ppa-manager
 ## Activate firewall
 sudo ufw enable
 
-## Configure
-# Add other users
-
+## Configure users
 ME=$(whoami)
-
 SHAREFILES=1
 
 # Configure my account first
 configure_account $ME
 
-## Install plugins
+# Ask if to improve sharing of files
 while true; do
-    read -p "Do you want to create the users with more open permissions so that it's easier to share files between each other? (y/n) " yn
-    case $yn in
-        [Yy]*) SHAREFILES=0; break;;
-        [Nn]*) break;;
-    esac
+	read -p "Do you want to create the users with more open permissions so that it's easier to share files between each other? (y/n) " yn
+	case $yn in
+		[Yy]*) SHAREFILES=0; break;;
+		[Nn]*) break;;
+	esac
 done
 
+# Create new users
 read -p "Enter the user names of the new users: " input
 NEWUSERS=("$input")
 ALLUSERS=(${NEWUSERS[@]} $ME)
 
 for newuser in "${NEWUSERS[@}"; do
-    sudo adduser $newuser
-    configure_user $newuser
+	sudo adduser $newuser
+	configure_user $newuser
 
 	if [ $SHAREFILES -eq 0 ]; then
 		for otheruser in "${ALLUSERS[@]}"; do
@@ -72,12 +70,23 @@ for newuser in "${NEWUSERS[@}"; do
 				continue
 			fi
 
-		    sudo adduser $otheruser $newuser
-		    sudo adduser $newuser $otheruser
+			sudo adduser $otheruser $newuser
+			sudo adduser $newuser $otheruser
 		done
 	fi
 done
 
+# Configure admin privileges
+echo -e "\nEnter the users that should be given super user permissions:"
+echo -e "\n${NEWUSERS[@]}\n"
+read -p "Sudoers: " input
+SUDOERS=("$input")
+
+for sudoer in "${SUDOERS[@}"; do
+	sudo adduser $newuser sudo
+done
+
+# Edit the umask
 if [ $SHAREFILES -eq 0 ]; then
 	# Edit umask
 	echo -e "\nSet the default umask to 002 for easier file sharing between users.\n"
@@ -85,19 +94,19 @@ if [ $SHAREFILES -eq 0 ]; then
 	sudo nano /etc/login.defs
 fi
 
-# Add projects alias
+## Add projects alias
 while true; do
-    read -p "Do you want to create a ~/Projects directory and add the "project" alias? (y/n) " yn
-    case $yn in
-        [Yy]*)
-        	if [ ! -d "~/Projects" ]; then
-			    mkdir "~/Projects"
+	read -p "Do you want to create a ~/Projects directory and add the "project" alias? (y/n) " yn
+	case $yn in
+		[Yy]*)
+			if [ ! -d "~/Projects" ]; then
+				mkdir "~/Projects"
 			fi
 
 			echo "" >> ~/.bashrc
 			echo "## projects alias" >> ~/.bashrc
 			echo "alias projects=\"cd ~/Projects\"" >> ~/.bashrc
-        break;;
-        [Nn]*) break;;
-    esac
+        	break;;
+        	[Nn]*) break;;
+        esac
 done
