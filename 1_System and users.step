@@ -25,13 +25,14 @@ function configure_user() {
 
 ## Add PPA's
 add_ppa webupd8team/y-ppa-manager
+add_ppa danielrichter2007/grub-customizer
 
 ## Update + upgrade
 sudo apt-get update
 sudo apt-get dist-upgrade -y
 
 ## Install
-sudo apt-get install -y gufw hardinfo cpufrequtils
+sudo apt-get install -y gufw hardinfo cpufrequtils grub-customizer
 sudo apt-get install -y ubuntu-restricted-extras cifs-utils tree testdisk
 sudo apt-get install -y gnome-shell gnome-tweak-tool network-manager-openvpn-gnome
 sudo apt-get install -y y-ppa-manager
