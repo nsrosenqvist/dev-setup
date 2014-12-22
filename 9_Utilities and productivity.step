@@ -2,6 +2,7 @@
 add_ppa libreoffice/ppa
 add_ppa yorba/ppa
 add_ppa nilarimogard/webupd8
+add_ppa noobslab/apps
 
 ## Enable partner repository
 sudo sed -i "/^# deb .*partner/ s/^# //" /etc/apt/sources.list
@@ -13,4 +14,4 @@ sudo apt-get dist-upgrade -y
 ## Install
 sudo apt-get install -y geary chromium-browser remmina deluge
 sudo apt-get install -y stellarium cheese mkvtoolnix-gui
-sudo apt-get install -y skype nautilus-dropbox
+sudo apt-get install -y skype nautilus-dropbox telegram-desktop
