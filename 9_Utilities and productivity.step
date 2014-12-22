@@ -7,6 +7,10 @@ add_ppa noobslab/apps
 ## Enable partner repository
 sudo sed -i "/^# deb .*partner/ s/^# //" /etc/apt/sources.list
 
+## Install ownCloud repositories
+sudo sh -c "echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/desktop/xUbuntu_${release_version}/ /' >> /etc/apt/sources.list.d/owncloud-client.list"
+wget -qO - "http://download.opensuse.org/repositories/isv:ownCloud:desktop/xUbuntu_${release_version}/Release.key" | sudo apt-key add -
+
 ## Update + upgrade
 sudo apt-get update
 sudo apt-get dist-upgrade -y
@@ -14,4 +18,4 @@ sudo apt-get dist-upgrade -y
 ## Install
 sudo apt-get install -y geary chromium-browser remmina deluge
 sudo apt-get install -y stellarium cheese mkvtoolnix-gui
-sudo apt-get install -y skype nautilus-dropbox telegram-desktop
+sudo apt-get install -y skype nautilus-dropbox telegram-desktop owncloud-client
