@@ -3,7 +3,7 @@ add_ppa inkscape.dev/ppa
 add_ppa irie/blender
 add_ppa otto-kesselgulasch/gimp
 add_ppa pmjdebruijn/darktable-release
-add_ppa sunab/sigil-git
+add_ppa i2p.packages/i2p #sunab/sigil-git
 add_ppa dimula73/krita
 add_ppa msylwester/digikam
 
