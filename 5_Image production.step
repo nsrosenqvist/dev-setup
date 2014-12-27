@@ -4,6 +4,8 @@ add_ppa irie/blender
 add_ppa otto-kesselgulasch/gimp
 add_ppa pmjdebruijn/darktable-release
 add_ppa sunab/sigil-git
+add_ppa dimula73/krita
+add_ppa msylwester/digikam
 
 ## Update + upgrade
 sudo apt-get update
@@ -16,3 +18,5 @@ sudo apt-get install -y blender
 sudo apt-get install -y darktable
 sudo apt-get install -y mypaint mypaint-data-extras
 sudo apt-get install -y typecatcher
+sudo apt-get install -y krita-2.8
+sudo apt-get install -y digikam
