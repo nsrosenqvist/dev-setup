@@ -4,7 +4,6 @@ add_ppa irie/blender
 add_ppa pmjdebruijn/darktable-release
 add_ppa i2p.packages/i2p #sunab/sigil-git
 add_ppa kubuntu-ppa/backports #dimula73/krita
-add_ppa msylwester/digikam
 
 # Ask if we should install stable GIMP or the latest development build
 while true; do
