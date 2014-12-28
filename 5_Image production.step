@@ -1,11 +1,19 @@
 ## Add PPA's
 add_ppa inkscape.dev/ppa
 add_ppa irie/blender
-add_ppa otto-kesselgulasch/gimp
 add_ppa pmjdebruijn/darktable-release
 add_ppa i2p.packages/i2p #sunab/sigil-git
 add_ppa kubuntu-ppa/backports #dimula73/krita
 add_ppa msylwester/digikam
+
+# Ask if we should install stable GIMP or the latest development build
+while true; do
+	read -p "Do you want to install the latest development build of GIMP (warning: unstable)? (y/n) " yn
+	case $yn in
+		[Yy]*) add_ppa otto-kesselgulasch/gimp-edge; break;;
+		[Nn]*) add_ppa otto-kesselgulasch/gimp; break;;
+	esac
+done
 
 ## Update + upgrade
 sudo apt-get update
