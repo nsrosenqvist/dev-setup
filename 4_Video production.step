@@ -1,6 +1,5 @@
 ## Add PPA's
-add_ppa gstreamer-developers/ppa
-add_ppa irie/blender
+add_ppa stebbins/handbrake-releases
 
 ## Update + upgrade
 sudo apt-get update
@@ -10,6 +9,7 @@ sudo apt-get dist-upgrade -y
 sudo apt-get install -y pitivi
 sudo apt-get install -y devede
 sudo apt-get install -y blender
+sudo apt-get install -y handbrake-gtk
 
 ## SimpleScreenRecorder
 while true; do
