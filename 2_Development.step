@@ -84,19 +84,24 @@ while true; do
                         add_ppa webupd8team/sublime-text-2
                         sudo apt-get update
                         sudo apt-get install -y sublime-text
+		    ;;
                     brackets)
                         add_ppa webupd8team/brackets
                         sudo apt-get update
                         sudo apt-get install -y brackets
+		    ;;
                     atom)
                         add_ppa webupd8team/atom
                         sudo apt-get update
                         sudo apt-get install -y atom
                         apm stars --install
+		    ;;
                     eclipse)
                         sudo apt-get install eclipse
+		    ;;
                     qtcreator)
                         sudo apt-get install qtcreator
+		    ;;
                 esac
             done
             break
@@ -125,9 +130,11 @@ while true; do
                     mysql)
                     	MYSQL_INSTALLED=0
                         sudo apt-get install -y mysql
+		    ;;
                     sqlite)
                     	SQLITE_INSTALLED=0
                         sudo apt-get install -y sqlite
+                    ;;
                 esac
             done
             break
