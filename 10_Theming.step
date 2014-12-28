@@ -1,5 +1,5 @@
 ## Add PPA's
-add_ppa moka/stable
+add_ppa moka/daily
 
 ## Update + upgrade
 sudo apt-get update
