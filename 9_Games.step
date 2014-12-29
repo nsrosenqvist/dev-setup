@@ -1,5 +1,6 @@
 ## Install
 sudo apt-get install -y steam
+echo 'STEAM_FRAME_FORCE_CLOSE=1' | sudo tee -a /etc/environment
 
 ## PlayOnLinux
 while true; do
