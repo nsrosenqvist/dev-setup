@@ -18,6 +18,6 @@ echo "   - Create a new entry with name \"Settings\", hotkey \"fn+f1\", command 
 echo "   - Do the same on all the other users"
 echo "8. Check the article (http://www.penguinproducer.com/Blog/2011/12/setting-up-a-studio-with-ubuntu/) and see if you need to do anything from the \"Alsa-Jack Bridge Setup\"-section"
 echo "9. Set up online accounts"
-echo "10. Godot or latest Pitivi build?"
+echo "10. Latest Pitivi build?"
 echo "11. Install Gimp Paint Studio resources (https://code.google.com/p/gps-gimp-paint-studio/)"
 echo ""
