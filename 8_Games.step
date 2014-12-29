@@ -23,74 +23,15 @@ while true; do
     read -p "Do you want to install Minecraft? (y/n) " yn
     case $yn in
         [Yy]*)
-            ## Create Minecraft resources
-            mcdir="/opt/minecraft"
-            mclauncher="$mcdir/minecraft.desktop"
-            mcscript="$mcdir/minecraft"
-
             prevpwd="$(pwd)"
-            sudo mkdir -p "$mcdir"
-            cd "$mcdir"
-            sudo wget "https://s3.amazonaws.com/Minecraft.Download/launcher/Minecraft.jar" -O Minecraft.jar
-            sudo wget "http://icons.iconarchive.com/icons/chrisl21/minecraft/512/3D-Grass-icon.png" -O minecraft.png
+            cd /tmp
+            git clone https://github.com/nsrosenqvist/minecraft-installer.git
+            cd minecraft-installer
+            sudo make install
+            minecraft-installer install
             cd "$prevpwd"
-
-            sudo touch "$mcscript"
-            sudo touch "$mclauncher"
-            sudo chmod -R 755 "$mcdir"
-            sudo chmod +x "$mcscript"
-            sudo chmod +x "$mcdir/Minecraft.jar"
-
-            ## Create a launcher
-            echo "[Desktop Entry]"                      | sudo tee -a "$mclauncher"
-            echo "Name=Minecraft"                       | sudo tee -a "$mclauncher"
-            echo "Comment=Play Minecraft"               | sudo tee -a "$mclauncher"
-            echo "GenericName=Minecraft"                | sudo tee -a "$mclauncher"
-            echo "Keywords=Games"                       | sudo tee -a "$mclauncher"
-            echo "Exec=bash \"$mcscript\""              | sudo tee -a "$mclauncher"
-            echo "Terminal=false"                       | sudo tee -a "$mclauncher"
-            echo "X-MultipleArgs=false"                 | sudo tee -a "$mclauncher"
-            echo "Type=Application"                     | sudo tee -a "$mclauncher"
-            echo "Icon=$mcdir/minecraft.png"            | sudo tee -a "$mclauncher"
-            echo "Categories=Game;"                     | sudo tee -a "$mclauncher"
-            echo "MimeType=;"                           | sudo tee -a "$mclauncher"
-            echo "StartupNotify=true"                   | sudo tee -a "$mclauncher"
-            echo "Actions=MinecraftFolder"              | sudo tee -a "$mclauncher"
-            echo ""                                     | sudo tee -a "$mclauncher"
-            echo "[Desktop Action MinecraftFolder]"     | sudo tee -a "$mclauncher"
-            echo "Name=Open .minecraft folder"          | sudo tee -a "$mclauncher"
-            echo "Exec=nautilus ~/.minecraft"           | sudo tee -a "$mclauncher"
-            echo "OnlyShowIn=Unity;"                    | sudo tee -a "$mclauncher"
-
-            ## Symlink launcher
-            sudo ln -s "$mclauncher" /usr/share/applications/minecraft.desktop
-
-            while true; do
-                read -p "Are you using Oracle Java? If not, OpenJDK is assumed. (y/n) " yn
-                case $yn in
-                    ## Oracle Java
-                    [Yy]*)
-                        echo "#!/bin/bash"                                                          | sudo tee -a "$mcscript"
-                        echo "export LD_LIBRARY_PATH=\"/usr/lib/jvm/java-8-oracle/jre/lib/amd64/\"" | sudo tee -a "$mcscript"
-                        echo "java -jar /opt/minecraft/Minecraft.jar"                               | sudo tee -a "$mcscript"
-                        break
-                    ;;
-                    ## OpenJDK
-                    [Nn]*)
-                        echo "#!/bin/bash"                                                                  | sudo tee -a "$mcscript"
-                        echo "export LD_LIBRARY_PATH=\"/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64\""   | sudo tee -a "$mcscript"
-                        echo "java -jar /opt/minecraft/Minecraft.jar"                                       | sudo tee -a "$mcscript"
-                        break
-                    ;;
-                    *) echo "Please answer yes or no.";;
-                esac
-            done
-            break
         ;;
         [Nn]*) break;;
         *) echo "Please answer yes or no.";;
     esac
 done
-
-
-
