@@ -46,6 +46,8 @@ SHAREFILES=1
 
 # Configure my account first
 configure_account $ME
+# Take control of /opt
+sudo chown "$ME:$ME" /opt
 
 # Ask if to improve sharing of files
 while true; do
