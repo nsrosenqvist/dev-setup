@@ -1,8 +1,10 @@
 ## Add PPA's
 add_ppa moka/daily
+add_ppa snwh/pulp
 
 ## Update + upgrade
 sudo apt-get update
 
 ## Install
 sudo apt-get install -y moka-gnome-shell-theme moka-icon-theme
+sudo apt-get install -y paper-gtk-theme
