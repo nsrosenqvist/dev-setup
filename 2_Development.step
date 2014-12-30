@@ -1,5 +1,5 @@
 ## Common dev tools
-sudo apt-get install -y filezilla meld virtualbox-qt gnome-boxes pyrenamer curl glade shunit2 build-essential make cmake
+sudo apt-get install -y filezilla meld virtualbox-qt gnome-boxes pyrenamer curl glade shunit2 build-essential make cmake mc
 
 ## Git
 sudo apt-get install -y git gitg
