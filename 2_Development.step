@@ -129,7 +129,7 @@ while true; do
                 case "${i,,}" in
                     mysql)
                     	MYSQL_INSTALLED=0
-                        sudo apt-get install -y mysql
+                        sudo apt-get install -y mysql 
 		    ;;
                     sqlite)
                     	SQLITE_INSTALLED=0
@@ -151,11 +151,11 @@ while true; do
             sudo apt-get install -y php5-cli php5-common php5-curl php5-json php5-mcrypt
             
             if [ MYSQL_INSTALLED -eq 0 ]; then
-            	sudo apt-get install -y php5-mysql
+            	sudo apt-get install -y php5-mysql mysql-workbench
             fi
             
             if [ SQLITE_INSTALLED -eq 0 ]; then
-            	sudo apt-get install -y php5-sqlite
+            	sudo apt-get install -y php5-sqlite sqliteman
             fi
 
             # Composer
