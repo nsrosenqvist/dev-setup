@@ -1,3 +1,5 @@
+sudo apt-get install -y  blender
+
 ## Install Godot
 prevpwd="$(pwd)"
 cd /opt
