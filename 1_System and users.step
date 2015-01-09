@@ -3,7 +3,7 @@ function configure_user() {
 	local newuser=$1
 	local bashrc = "/home/$newuser/.bashrc"
 
-	if [ -z "newuser" ]; then
+	if [ -z "$newuser" ]; then
 		exit "Error! User must be specified"
 	fi
 
@@ -32,7 +32,7 @@ sudo apt-get update
 sudo apt-get dist-upgrade -y
 
 ## Install
-sudo apt-get install -y gufw hardinfo cpufrequtils grub-customizer
+sudo apt-get install -y gufw hardinfo cpufrequtils grub-customizer nautilus-open-terminal
 sudo apt-get install -y ubuntu-restricted-extras cifs-utils tree testdisk
 sudo apt-get install -y gnome-shell gnome-tweak-tool network-manager-openvpn-gnome
 sudo apt-get install -y y-ppa-manager
