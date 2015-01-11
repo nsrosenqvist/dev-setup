@@ -47,7 +47,7 @@ while true; do
 done
 
 ## Install DAW's
-sudo apt-get install -y qtractor sunvox luppp lmmsardour3
+sudo apt-get install -y qtractor sunvox luppp lmms ardour3
 
 ## Tune VM swappiness
 echo "# Studio Performance Tweak" | sudo tee -a /etc/sysctl.d/30-proaudio.conf
