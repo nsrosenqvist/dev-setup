@@ -1,5 +1,5 @@
 ## Add PPA's
-add_ppa inkscape.dev/ppa
+add_ppa inkscape.dev/stable
 add_ppa pmjdebruijn/darktable-release
 add_ppa i2p.packages/i2p #sunab/sigil-git
 add_ppa kubuntu-ppa/backports #dimula73/krita
