@@ -187,10 +187,7 @@ while true; do
     read -p "Do you want to install Node.js? (y/n) " yn
     case $yn in
         [Yy]*)
-            add_ppa chris-lea/node.js
-            sudo apt-get update
-
-            sudo apt-get install -y nodejs
+            curl -sL https://deb.nodesource.com/setup | sudo bash -
 
             # Either create or empty ~/.npm
             if [ -d ~/.npm ]; then
