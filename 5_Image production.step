@@ -4,6 +4,7 @@ add_ppa pmjdebruijn/darktable-release
 add_ppa i2p.packages/i2p #sunab/sigil-git
 add_ppa kubuntu-ppa/backports #dimula73/krita
 add_ppa dhor/myway #photofilmstrip
+add_ppa dismine/valentina
 
 # Ask if we should install stable GIMP or the latest development build
 while true; do
@@ -26,6 +27,7 @@ sudo apt-get install -y darktable
 sudo apt-get install -y mypaint mypaint-data-extras
 sudo apt-get install -y typecatcher
 sudo apt-get install -y python-wxgtk2.8 photofilmstrip photocollage
+sudo apt-get install -y valentina
 sudo apt-get install -y krita kritasketch
 kbuildsycoca4
 
