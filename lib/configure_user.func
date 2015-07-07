@@ -11,13 +11,13 @@ function configure_user {
 	sudo chown "$newuser:$newuser" "/home/$newuser/Templates/Text file.txt"
 
 	# Create "/home/$newuser/.bin" and edit /home/$newuser/.bashrc
-	mkdir "/home/$newuser/.bin"
+	sudo mkdir "/home/$newuser/.bin"
 
-	echo "" >> "$bashrc"
-	echo "#------------------#" >> "$bashrc"
-	echo "#      CUSTOM      #" >> "$bashrc"
-	echo "#------------------#" >> "$bashrc"
-	echo "" >> "$bashrc"
-	echo "## Add ~/.bin to path" >> "$bashrc"
-	echo 'export PATH="$PATH:~/.bin"' >> "$bashrc"
+	sudo sh -c "echo '' >> '$bashrc'"
+	sudo sh -c "echo '#------------------#" >> '$bashrc'"
+	sudo sh -c "echo '#      CUSTOM      #" >> '$bashrc'"
+	sudo sh -c "echo '#------------------#" >> '$bashrc'"
+	sudo sh -c "echo '' >> '$bashrc'"
+	sudo sh -c "echo '## Add ~/.bin to path' >> '$bashrc'"
+	sudo sh -c "echo 'export PATH=\"$PATH:~/.bin\"' >> '$bashrc'"
 }

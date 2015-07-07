@@ -8,7 +8,7 @@ sudo apt-get dist-upgrade -y
 
 ## Install
 sudo apt-get install -y gufw hardinfo cpufrequtils grub-customizer nautilus-open-terminal
-sudo apt-get install -y ubuntu-restricted-extras cifs-utils tree testdisk exfat-fuse exfat-utils hfsprogs hfsplus udftools
+sudo apt-get install -y ubuntu-restricted-extras cifs-utils tree testdisk exfat-fuse exfat-utils hfsprogs hfsplus udftools xbindkeys-config
 sudo apt-get install -y gnome-shell gnome-tweak-tool network-manager-openvpn-gnome
 sudo apt-get install -y y-ppa-manager
 
@@ -76,14 +76,15 @@ while true; do
 	read -p "Do you want to create a ~/Projects directory and add the "project" alias? (y/n) " yn
 	case $yn in
 		[Yy]*)
-			if [ ! -d "$HOME/Projects" ]; then
-				mkdir "$HOME/Projects"
-			fi
+				if [ ! -d "$HOME/Projects" ]; then
+					mkdir "$HOME/Projects"
+				fi
 
-			echo "" >> ~/.bashrc
-			echo "## projects alias" >> ~/.bashrc
-			echo "alias projects=\"cd ~/Projects\"" >> ~/.bashrc
-        	break;;
+				echo "" >> ~/.bashrc
+				echo "## projects alias" >> ~/.bashrc
+				echo "alias projects=\"cd ~/Projects\"" >> ~/.bashrc
+				break
+			;;
         	[Nn]*) break;;
         esac
 done
@@ -93,13 +94,17 @@ while true; do
         read -p "Do you want to install the staging PPA for GNOME? (y/n) " yn
         case $yn in
                 [Yy]*)
-			add_ppa gnome3-team/gnome3-staging
-			add_ppa gnome3-team/gnome3
+					add_ppa gnome3-team/gnome3
+					add_ppa gnome3-team/gnome3-staging
 
-			sudo apt-get update
-			sudo apt-get dist-upgrade -y
-			sudo apt-get install -y polari gnome-music gnome-photos gnome-maps gnome-weather epiphany-browser
-                break;;
+					sudo apt-get update
+					sudo apt-get dist-upgrade -y
+					sudo apt-get install -y polari gnome-music gnome-photos gnome-maps gnome-weather epiphany-browser
+					
+					echo ""
+					read -p "It is highly recommend that you abort and reboot the computer before continuing ith the remaining steps. Press any key to finish this step..." message
+					break
+				;;
                 [Nn]*) break;;
         esac
 done

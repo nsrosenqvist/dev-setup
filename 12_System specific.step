@@ -1,25 +1,14 @@
-## Samsung tools
-while true; do
-    read -p "Are you using a Samsung laptop and want samsung-tools installed? (y/n) " yn
-    case $yn in
-        [Yy]*)
-            add_ppa voria/ppa
-            sudo apt-get update
-            sudo apt-get install -y samsung-tools xbindkeys-config
-            break
-        ;;
-        [Nn]*) break;;
-        *) echo "Please answer yes or no.";;
-    esac
-done
-
 ## Intel drivers
 while true; do
-    read -p "Are you using Intel graphics and want to use the workaround for screen tearing (https://bugs.freedesktop.org/show_bug.cgi?id=37686)? (y/n) " yn
+    read -p "Are you using Intel graphics and want to enable Tear-Free mode (https://bugs.freedesktop.org/show_bug.cgi?id=37686)? (y/n) " yn
     case $yn in
         [Yy]*)
-            echo "CLUTTER_PAINT=disable-clipped-redraws:disable-culling" | sudo tee -a /etc/environment
-            echo "CLUTTER_VBLANK=True" | sudo tee -a /etc/environment
+            echo "Section \"Device\""						| sudo tee -a /etc/X11/xorg.conf 
+			echo "   Identifier  \"Intel Graphics\""		| sudo tee -a /etc/X11/xorg.conf 
+			echo "   Driver      \"intel\""					| sudo tee -a /etc/X11/xorg.conf 
+			echo "   Option      \"AccelMethod\" \"sna\""	| sudo tee -a /etc/X11/xorg.conf 
+			echo "   Option      \"TearFree\" \"true\""		| sudo tee -a /etc/X11/xorg.conf 
+			echo "EndSection"								| sudo tee -a /etc/X11/xorg.conf 
             break
         ;;
         [Nn]*) break;;
@@ -29,16 +18,10 @@ done
 
 ## Laptop-mode-tools
 while true; do
-    read -p "Do you want to install laptop-mode-tools and powertop for better power management on laptops? (y/n) " yn
+    read -p "Do you want to install power management tools for laptops? (y/n) " yn
     case $yn in
         [Yy]*)
-            if [ "$release_name" = "trusty" ]; then
-                cd ~/Downloads && wget "http://ppa.launchpad.net/webupd8team/unstable/ubuntu/pool/main/l/laptop-mode-tools/laptop-mode-tools_1.65-1~webupd8~trusty1_all.deb" && sudo dpkg -i laptop-mode-tools_1.65-1*
-            else
-                sudo apt-get install -y laptop-mode-tools python-qt4
-            fi
-
-            sudo apt-get install -y cpufrequtils powertop
+            sudo apt-get install -y laptop-mode-tools cpufrequtils powertop
             break
         ;;
         [Nn]*) break;;

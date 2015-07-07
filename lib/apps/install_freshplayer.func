@@ -3,4 +3,5 @@ function install_freshplayer {
 	add_ppa nilarimogard/webupd8
 	sudo apt-get update
 	sudo apt-get install -y freshplayerplugin
+	cp /usr/share/doc/freshplayerplugin/freshwrapper.conf.example ~/.config/freshwrapper.conf
 }

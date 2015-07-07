@@ -1,5 +1,5 @@
 ## Common dev tools
-sudo apt-get install -y filezilla meld gnome-boxes pyrenamer curl glade shunit2 build-essential make cmake mc
+sudo apt-get install -y filezilla meld gnome-boxes pyrenamer curl glade shunit2 build-essential make cmake automake mc mysql-client mysql-workbench
 
 ## Git
 sudo apt-get install -y git gitg
@@ -31,47 +31,14 @@ done
 
 ## Editors
 while true; do
-    read -p "Do you want to install extra text editors? (y/n) " yn
+    read -p "Do you want to install atom? (y/n) " yn
     case $yn in
-        [Yy]*)
-            echo -e "\nsublime-text"
-            echo -e "brackets"
-            echo -e "atom"
-            echo -e "eclipse"
-            if [ $USDK_INSTALLED -eq 1 ]; then
-                echo -e "qtcreator"
-            fi
-            echo ""
-            read -p "Enter the editors you want to install: " input
-            EDITORS=("$input")
+        [Yy]*) 
+			add_ppa webupd8team/atom
+			sudo apt-get update
+			sudo apt-get install -y atom
+			apm stars --install </dev/null
 
-            # Install the selected editors
-            for i in "${EDITORS[@]}"; do
-                case "${i,,}" in
-                    sublime-text)
-                        add_ppa webupd8team/sublime-text-2
-                        sudo apt-get update
-                        sudo apt-get install -y sublime-text
-		    ;;
-                    brackets)
-                        add_ppa webupd8team/brackets
-                        sudo apt-get update
-                        sudo apt-get install -y brackets
-		    ;;
-                    atom)
-                        add_ppa webupd8team/atom
-                        sudo apt-get update
-                        sudo apt-get install -y atom
-                        apm stars --install
-		    ;;
-                    eclipse)
-                        sudo apt-get install eclipse
-		    ;;
-                    qtcreator)
-                        sudo apt-get install qtcreator
-		    ;;
-                esac
-            done
             break
         ;;
         [Nn]*) break;;
@@ -86,7 +53,7 @@ while true; do
     read -p "Do you want to install databases? (y/n) " yn
     case $yn in
         [Yy]*)
-            echo -e "\MySQL"
+            echo -e "\nMySQL"
             echo -e "SQLite"
             echo ""
             read -p "Enter the databases you want to install: " input
@@ -97,8 +64,8 @@ while true; do
                 case "${i,,}" in
                     mysql)
                     	MYSQL_INSTALLED=0
-                        sudo apt-get install -y mysql mysql-workbench
-		    ;;
+                        sudo apt-get install -y mysql-server
+					;;
                     sqlite)
                     	SQLITE_INSTALLED=0
                         sudo apt-get install -y sqlite sqliteman
