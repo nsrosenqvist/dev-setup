@@ -1,28 +1,3 @@
-## Functions
-function configure_user() {
-	local newuser=$1
-	local bashrc = "/home/$newuser/.bashrc"
-
-	if [ -z "$newuser" ]; then
-		exit "Error! User must be specified"
-	fi
-
-	# Add empty template files
-	sudo touch "/home/$newuser/Templates/Text file.txt"
-	sudo chown "$newuser:$newuser" "/home/$newuser/Templates/Text file.txt"
-
-	# Create "/home/$newuser/.bin" and edit /home/$newuser/.bashrc
-	mkdir "/home/$newuser/.bin"
-
-	echo "" >> "$bashrc"
-	echo "#------------------#" >> "$bashrc"
-	echo "#      CUSTOM      #" >> "$bashrc"
-	echo "#------------------#" >> "$bashrc"
-	echo "" >> "$bashrc"
-	echo "## Add ~/.bin to path" >> "$bashrc"
-	echo 'export PATH="$PATH:~/.bin"' >> "$bashrc"
-}
-
 ## Add PPA's
 add_ppa webupd8team/y-ppa-manager
 add_ppa danielrichter2007/grub-customizer
@@ -41,15 +16,14 @@ sudo apt-get install -y y-ppa-manager
 sudo ufw enable
 
 ## Configure users
-ME=$(whoami)
-SHAREFILES=1
 
 # Configure my account first
-configure_account $ME
-# Take control of /opt
-sudo chown "$ME:$ME" /opt
+configure_user "$user"
+sudo chown "$user:$user" /opt
 
 # Ask if to improve sharing of files
+SHAREFILES=1
+
 while true; do
 	read -p "Do you want to create the users with more open permissions so that it's easier to share files between each other? (y/n) " yn
 	case $yn in
@@ -61,7 +35,7 @@ done
 # Create new users
 read -p "Enter the user names of the new users: " input
 NEWUSERS=("$input")
-ALLUSERS=(${NEWUSERS[@]} $ME)
+ALLUSERS=(${NEWUSERS[@]} $user)
 
 for newuser in "${NEWUSERS[@]}"; do
 	sudo adduser $newuser
@@ -113,3 +87,20 @@ while true; do
         	[Nn]*) break;;
         esac
 done
+
+## Ask if we should upgrade to latest GNOME-Shell
+while true; do
+        read -p "Do you want to install the staging PPA for GNOME? (y/n) " yn
+        case $yn in
+                [Yy]*)
+			add_ppa gnome3-team/gnome3-staging
+			add_ppa gnome3-team/gnome3
+
+			sudo apt-get update
+			sudo apt-get dist-upgrade -y
+			sudo apt-get install -y polari gnome-music gnome-photos gnome-maps gnome-weather epiphany-browser
+                break;;
+                [Nn]*) break;;
+        esac
+done
+

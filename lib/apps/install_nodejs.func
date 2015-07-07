@@ -1,0 +1,28 @@
+function install_nodejs {
+	curl -sL https://deb.nodesource.com/setup | sudo bash -
+	sudo apt-get install -y nodejs
+
+	# Either create or empty ~/.npm
+	if [ -d ~/.npm ]; then
+		cd ~/.npm
+		rm -R *
+	else
+		mkdir ~/.npm
+		cd ~/.npm
+	fi
+
+	# Set npm paths
+	npm config set prefix ~/.npm
+
+	mkdir ~/.npm/cache
+	npm config set cache ~/.npm/cache
+
+	# Add ~/.npm/bin to PATH
+	echo "" >> ~/.bashrc
+	echo "## Add ~/.npm/bin to path" >> ~/.bashrc
+	echo 'export PATH="$HOME/.npm/bin:$PATH"' >> ~/.bashrc
+
+	# Install common node packages
+	sudo chown $user:$user -R ~/.npm
+	npm install -g grunt-cli bower gulp
+}

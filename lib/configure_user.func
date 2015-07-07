@@ -1,0 +1,23 @@
+function configure_user {
+	local newuser=$1
+	local bashrc="/home/$newuser/.bashrc"
+
+	if [ -z "$newuser" ]; then
+		exit "Error! User must be specified"
+	fi
+
+	# Add empty template files
+	sudo touch "/home/$newuser/Templates/Text file.txt"
+	sudo chown "$newuser:$newuser" "/home/$newuser/Templates/Text file.txt"
+
+	# Create "/home/$newuser/.bin" and edit /home/$newuser/.bashrc
+	mkdir "/home/$newuser/.bin"
+
+	echo "" >> "$bashrc"
+	echo "#------------------#" >> "$bashrc"
+	echo "#      CUSTOM      #" >> "$bashrc"
+	echo "#------------------#" >> "$bashrc"
+	echo "" >> "$bashrc"
+	echo "## Add ~/.bin to path" >> "$bashrc"
+	echo 'export PATH="$PATH:~/.bin"' >> "$bashrc"
+}

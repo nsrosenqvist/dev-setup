@@ -1,0 +1,6 @@
+function install_freshplayer {
+	read -p "To install fresh player you must first have Google Chrome installed. Get it from their website (https://www.google.com/intl/en/chrome/browser/) and then install it. After that you can continue the installation by pressing any key..." message
+	add_ppa nilarimogard/webupd8
+	sudo apt-get update
+	sudo apt-get install -y freshplayerplugin
+}

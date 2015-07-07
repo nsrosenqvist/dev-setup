@@ -1,5 +1,5 @@
 ## Common dev tools
-sudo apt-get install -y filezilla meld virtualbox-qt gnome-boxes pyrenamer curl glade shunit2 build-essential make cmake mc
+sudo apt-get install -y filezilla meld gnome-boxes pyrenamer curl glade shunit2 build-essential make cmake mc
 
 ## Git
 sudo apt-get install -y git gitg
@@ -9,41 +9,6 @@ git config --global push.default simple
 
 ## Android tools
 sudo apt-get install -y android-tools-adb android-tools-fastboot
-
-## Ruby
-while true; do
-    read -p "Do you want to install Ruby? (y/n) " yn
-    case $yn in
-        [Yy]*)
-            while true; do
-                read -p "Do you want to install Ruby v2.1 from Brightbox PPA instead of the one in the default repositories? (y/n) " yn2
-                case $yn2 in
-                    [Yy]*)
-                        add_ppa brightbox/ruby-ng
-                        sudo apt-get update
-                        sudo apt-get install -y ruby2.1 ruby2.1-dev
-
-                        break
-                    ;;
-                    [Nn]*)
-                        sudo apt-get install -y ruby ruby-dev
-
-                        break
-                    ;;
-                    *) echo "Please answer yes or no.";;
-                esac
-            done
-
-            # Common gems
-            sudo apt-get install -y ruby-bundler rake zlib1g-dev libicu-dev
-            sudo gem update && sudo gem install compass gollum redcarpet github-markdown
-
-            break
-        ;;
-        [Nn]*) break;;
-        *) echo "Please answer yes or no.";;
-    esac
-done
 
 ## Ubuntu SDK
 USDK_INSTALLED=1
@@ -132,11 +97,11 @@ while true; do
                 case "${i,,}" in
                     mysql)
                     	MYSQL_INSTALLED=0
-                        sudo apt-get install -y mysql 
+                        sudo apt-get install -y mysql mysql-workbench
 		    ;;
                     sqlite)
                     	SQLITE_INSTALLED=0
-                        sudo apt-get install -y sqlite
+                        sudo apt-get install -y sqlite sqliteman
                     ;;
                 esac
             done
@@ -154,12 +119,12 @@ while true; do
             sudo apt-get install -y php5-cli php5-common php5-curl php5-json php5-mcrypt php5-gd
             sudo php5enmod mcrypt
             
-            if [ MYSQL_INSTALLED -eq 0 ]; then
-            	sudo apt-get install -y php5-mysql mysql-workbench
+            if [ $MYSQL_INSTALLED -eq 0 ]; then
+            	sudo apt-get install -y php5-mysql
             fi
             
-            if [ SQLITE_INSTALLED -eq 0 ]; then
-            	sudo apt-get install -y php5-sqlite sqliteman
+            if [ $SQLITE_INSTALLED -eq 0 ]; then
+            	sudo apt-get install -y php5-sqlite
             fi
 
             # Composer
@@ -187,31 +152,7 @@ while true; do
     read -p "Do you want to install Node.js? (y/n) " yn
     case $yn in
         [Yy]*)
-            curl -sL https://deb.nodesource.com/setup | sudo bash -
-
-            # Either create or empty ~/.npm
-            if [ -d ~/.npm ]; then
-                cd ~/.npm
-                rm -R *
-            else
-                mkdir ~/.npm
-                cd ~/.npm
-            fi
-
-            # Set npm paths
-            npm config set prefix ~/.npm
-
-            mkdir ~/.npm/cache
-            npm config set cache ~/.npm/cache
-
-            # Add ~/.npm/bin to PATH
-            echo "" >> ~/.bashrc
-            echo "## Add ~/.npm/bin to path" >> ~/.bashrc
-            echo 'export PATH="$HOME/.npm/bin:$PATH"' >> ~/.bashrc
-
-            # Install common node packages
-            npm install -g grunt-cli bower yo gulp
-
+            install_nodejs
             break
         ;;
         [Nn]*) break;;
@@ -231,7 +172,7 @@ while true; do
         ;;
         [Nn]*)
             ## OpenJDK
-            sudo apt-get install -y openjdk-7-jre
+            sudo apt-get install -y openjdk-8-jre
             break
         ;;
         *) echo "Please answer yes or no.";;

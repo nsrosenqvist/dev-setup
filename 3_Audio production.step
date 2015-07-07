@@ -1,66 +1,16 @@
-sudo apt-get install -y audacity
+## Install kxstudio repositories
+# Download package file
+wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_8.3.1~kxstudio1_all.deb
+
+# Install it
+sudo dpkg -i kxstudio-repos_8.3.1~kxstudio1_all.deb
 
 ## Add users to audio group
-sudo addgroup $(whoami) audio
-
-while true; do
-    read -p "Do you want to install a full fledged studio setup? This will also install JACK, an alternative audio server and it might mess up your system. (y/n) " yn
-    case $yn in
-        [Yy]*) break;;
-        [Nn]*)
-            exit 0;
-        break;;
-        *) echo "Please answer yes or no.";;
-    esac
-done
-
-## Add PPA's
-add_ppa ppa:kxstudio-debian/kxstudio
-
-## Update software sources
-sudo apt-get update
-
-## Install kxstudio-repos
-sudo apt-get -y install kxstudio-repos
+sudo addgroup "$user" audio
 
 ## Update + upgrade
 sudo apt-get update
 sudo apt-get dist-upgrade -y
 
-## Install JACK + Cadence
-sudo apt-get install -y cadence claudia
-
-## Install monitoring apps
-sudo apt-get install -y jaaa meterbridge
-
-## Install plugins
-while true; do
-    read -p "Do you want to install the KXStudio and Ubuntu Studio audio plugins? (y/n) " yn
-    case $yn in
-        [Yy]*)
-            sudo apt-get install -y kxstudio-meta-audio-plugins ubuntustudio-audio-plugins
-            break
-        ;;
-        [Nn]*) break;;
-        *) echo "Please answer yes or no.";;
-    esac
-done
-
 ## Install DAW's
-sudo apt-get install -y qtractor sunvox luppp lmms ardour3
-
-## Tune VM swappiness
-echo "# Studio Performance Tweak" | sudo tee -a /etc/sysctl.d/30-proaudio.conf
-echo "vm.swappiness = 10" | sudo tee -a /etc/sysctl.d/30-proaudio.conf
-
-## Make clock devices accessible
-echo "KERNEL==\"rtc0\", GROUP=\"audio\"" | sudo tee -a /etc/udev/rules.d/50-audio-timing.rules
-echo "KERNEL==\"hpet\", GROUP=\"audio\"" | sudo tee -a /etc/udev/rules.d/50-audio-timing.rules
-
-## ALSA loopback driver
-echo "snd_aloop" | sudo tee -a /etc/modules
-
-## Set noatime on filesystems
-echo -e "\nSet \"noatime\" on filesystems used for audio production.\n"
-read -p "Press any key to continue... " -n 1 dummy
-sudo nano /etc/fstab
+sudo apt-get install -y audacity sunvox ardour4

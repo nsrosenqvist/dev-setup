@@ -1,7 +1,5 @@
 ## Add PPA's
-add_ppa tomahawk/ppa
 add_ppa videolan/stable-daily
-add_ppa webupd8team/atraci
 add_ppa nilarimogard/webupd8
 
 ## Update + upgrade
@@ -9,38 +7,18 @@ sudo apt-get update
 sudo apt-get dist-upgrade -y
 
 ## Install
-sudo apt-get install -y freshplayerplugin # Enables new flash to be used in Firefox
-sudo apt-get install -y tomahawk atraci
 sudo apt-get install -y vlc
 sudo apt-get install -y easytag sound-juicer dvdrip
 
-## Libdvdcss
-sudo bash /usr/share/doc/libdvdread4/install-css.sh
-
-## Blu-ray support in VLC
-while true; do
-    read -p "Do you want to install Blu-ray support for VLC? (y/n) " yn
-    case $yn in
-        [Yy]*)
-            sudo apt-get install -y libaacs0 libbluray-bdj libbluray1
-            sudo apt-get dist-upgrade -y
-            mkdir -p ~/.config/aacs/
-            cd ~/.config/aacs/ && wget http://vlc-bluray.whoknowsmy.name/files/KEYDB.cfg
-            break
-        ;;
-        [Nn]*) break;;
-        *) echo "Please answer yes or no.";;
-    esac
-done
+## Improve media support
+improve_media_support
 
 ## Spotify
 while true; do
     read -p "Do you want to install Spotify? (y/n) " yn
     case $yn in
         [Yy]*)
-            echo -e "\n## Spotify\ndeb http://repository.spotify.com stable non-free" | sudo tee -a /etc/apt/sources.list && sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 94558F59
-            sudo apt-get update
-            sudo apt-get install -y spotify-client
+	    install_spotify
             break
         ;;
         [Nn]*) break;;

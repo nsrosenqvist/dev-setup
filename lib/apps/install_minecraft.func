@@ -1,0 +1,12 @@
+## Minecraft
+function install_minecraft {
+	prevpwd="$(pwd)"
+	cd /tmp
+
+	git clone https://github.com/nsrosenqvist/minecraft-installer.git
+	cd minecraft-installer
+	sudo make install
+	minecraft-installer install
+
+	cd "$prevpwd"
+}

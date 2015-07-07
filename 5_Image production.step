@@ -1,7 +1,6 @@
 ## Add PPA's
 add_ppa inkscape.dev/stable
 add_ppa pmjdebruijn/darktable-release
-add_ppa i2p.packages/i2p #sunab/sigil-git
 add_ppa kubuntu-ppa/backports #dimula73/krita
 add_ppa dhor/myway #photofilmstrip
 add_ppa dismine/valentina
@@ -28,7 +27,4 @@ sudo apt-get install -y mypaint mypaint-data-extras
 sudo apt-get install -y typecatcher
 sudo apt-get install -y python-wxgtk2.8 photofilmstrip photocollage
 sudo apt-get install -y valentina
-sudo apt-get install -y krita kritasketch
-kbuildsycoca4
-
-sudo apt-get install -y digikam
+sudo apt-get install -y krita
