@@ -20,4 +20,10 @@ function configure_user {
 	sudo sh -c "echo '' >> '$bashrc'"
 	sudo sh -c "echo '## Add ~/.bin to path' >> '$bashrc'"
 	sudo sh -c "echo 'export PATH=\"$PATH:~/.bin\"' >> '$bashrc'"
+	
+	if [ -f "/usr/share/powerline/bindings/bash/powerline.sh" ]; then
+		sudo sh -c "echo '' >> '$bashrc'"
+		sudo sh -c "echo '## Enable powerline' >> '$bashrc'"
+		sudo sh -c "echo 'source /usr/share/powerline/bindings/bash/powerline.sh' >> '$bashrc'"
+	fi
 }
