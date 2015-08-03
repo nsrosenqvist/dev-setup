@@ -1,6 +1,7 @@
 ## Install
 install_steam
 install_playonlinux
+install_joypad
 
 ## Minecraft
 while true; do
