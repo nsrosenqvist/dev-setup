@@ -20,5 +20,5 @@ sudo apt-get update
 sudo apt-get install typora
 
 ## Ghostwriter
-sudo add-apt-repository ppa:wereturtle/ppa
+add_ppa wereturtle/ppa
 sudo apt-get update && sudo apt-get install ghostwriter
