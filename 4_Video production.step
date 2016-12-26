@@ -9,4 +9,4 @@ sudo apt-get dist-upgrade -y
 sudo apt-get install -y pitivi kdenlive kdenlive-data
 sudo apt-get install -y devede
 sudo apt-get install -y blender
-sudo apt-get install -y handbrake-gtk avidemux avidemux-plugins-gtk
+sudo apt-get install -y handbrake-gtk
