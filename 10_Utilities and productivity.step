@@ -1,19 +1,12 @@
 ## Add PPA's
 add_ppa libreoffice/ppa
-add_ppa yorba/ppa
-add_ppa nilarimogard/webupd8
-add_ppa atareao/telegram #noobslab/apps
 
 ## Enable partner repository
 sudo sed -i "/^# deb .*partner/ s/^# //" /etc/apt/sources.list
 
 ## Install ownCloud repositories
-sudo sh -c "echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/desktop/xUbuntu_${release_version}/ /' >> /etc/apt/sources.list.d/owncloud-client.list"
-wget -qO - "http://download.opensuse.org/repositories/isv:ownCloud:desktop/xUbuntu_${release_version}/Release.key" | sudo apt-key add -
-
-## Install Opera repositories
-sudo sh -c "echo 'deb http://deb.opera.com/opera/ stable non-free #Opera Browser (final releases)' >> /etc/apt/sources.list.d/opera.list"
-wget -O - http://deb.opera.com/archive.key | sudo apt-key add -
+sudo sh -c "echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/desktop/Ubuntu_${release_version}/ /' > /etc/apt/sources.list.d/owncloud-client.list"
+wget -qO - "http://download.opensuse.org/repositories/isv:ownCloud:desktop/Ubuntu_16.10/Release.key" | sudo apt-key add -
 
 ## Update + upgrade
 sudo apt-get update
@@ -21,6 +14,7 @@ sudo apt-get dist-upgrade -y
 
 ## Install
 sudo apt-get install -y libreoffice-style-sifr impressive pdfsam
-sudo apt-get install -y geary opera-stable remmina deluge
+sudo apt-get install -y remmina deluge
 sudo apt-get install -y stellarium cheese mkvtoolnix-gui
-sudo apt-get install -y skype nautilus-dropbox telegram owncloud-client
+sudo apt-get install -y skype nautilus-dropbox owncloud-client
+sudo apt-get install -y gnome-gmail
