@@ -94,7 +94,7 @@ while true; do
             fi
             
             if [ $SQLITE_INSTALLED -eq 0 ]; then
-            	sudo apt-get install -y php-sqlite
+            	sudo apt-get install -y php-sqlite3
             fi
 
             # Composer
@@ -137,7 +137,7 @@ while true; do
         [Yy]*)
             add_ppa webupd8team/java
             sudo apt-get update
-            sudo apt-get install -y oracle-java9-installer
+            sudo apt-get install -y oracle-java8-installer
             break
         ;;
         [Nn]*)
