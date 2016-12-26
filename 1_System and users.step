@@ -1,6 +1,6 @@
 ## Add PPA's
 add_ppa webupd8team/y-ppa-manager
-add_ppa danielrichter2007/grub-customizer
+# add_ppa danielrichter2007/grub-customizer
 
 ## Update + upgrade
 sudo apt-get update
@@ -33,43 +33,54 @@ while true; do
 	esac
 done
 
-# Create new users
-read -p "Enter the user names of the new users: " input
-NEWUSERS=("$input")
-ALLUSERS=(${NEWUSERS[@]} $user)
-
-for newuser in "${NEWUSERS[@]}"; do
-	sudo adduser $newuser
-	configure_user $newuser
-
-	if [ $SHAREFILES -eq 0 ]; then
-		for otheruser in "${ALLUSERS[@]}"; do
-			if [ $otheruser = $newuser ]; then
-				continue
-			fi
-
-			sudo adduser $otheruser $newuser
-			sudo adduser $newuser $otheruser
-		done
-	fi
-done
-
-# Configure admin privileges
-echo -e "\nEnter the users that should be given super user permissions:"
-echo -e "\n${NEWUSERS[@]}\n"
-read -p "Sudoers: " input
-SUDOERS=("$input")
-
-for sudoer in "${SUDOERS[@]}"; do
-	sudo adduser $newuser sudo
-done
-
 # Edit the umask
 if [ $SHAREFILES -eq 0 ]; then
 	# Edit umask
 	echo -e "\nSet the default umask to 002 for easier file sharing between users.\n"
 	read -p "Press any key to continue... " -n 1 dummy
 	sudo nano /etc/login.defs
+fi
+
+# Ask if to create users
+while true; do
+	read -p "Do you want to create new users? (y/n) " yn
+	case $yn in
+		[Yy]*) CREATEUSERS=0; break;;
+		[Nn]*) CREATEUSERS=1; break;;
+	esac
+done
+
+# Create new users
+if [ $CREATEUSERS -eq 0 ]; then
+	read -p "Enter the user names of the new users: " input
+	NEWUSERS=("$input")
+	ALLUSERS=(${NEWUSERS[@]} $user)
+
+	for newuser in "${NEWUSERS[@]}"; do
+		sudo adduser $newuser
+		configure_user $newuser
+
+		if [ $SHAREFILES -eq 0 ]; then
+			for otheruser in "${ALLUSERS[@]}"; do
+				if [ $otheruser = $newuser ]; then
+					continue
+				fi
+
+				sudo adduser $otheruser $newuser
+				sudo adduser $newuser $otheruser
+			done
+		fi
+	done
+
+	# Configure admin privileges
+	echo -e "\nEnter the users that should be given super user permissions:"
+	echo -e "\n${NEWUSERS[@]}\n"
+	read -p "Sudoers: " input
+	SUDOERS=("$input")
+
+	for sudoer in "${SUDOERS[@]}"; do
+		sudo adduser $newuser sudo
+	done
 fi
 
 ## Add projects alias
@@ -91,17 +102,20 @@ while true; do
 done
 
 ## Ask if we should upgrade to latest GNOME-Shell
+add_ppa gnome3-team/gnome3
+sudo apt-get update
+sudo apt-get dist-upgrade -y
+sudo apt-get install -y polari gnome-music gnome-photos gnome-maps gnome-weather epiphany-browser
+
 while true; do
         read -p "Do you want to install the staging PPA for GNOME? (y/n) " yn
         case $yn in
                 [Yy]*)
-					add_ppa gnome3-team/gnome3
 					add_ppa gnome3-team/gnome3-staging
 
 					sudo apt-get update
 					sudo apt-get dist-upgrade -y
-					sudo apt-get install -y polari gnome-music gnome-photos gnome-maps gnome-weather epiphany-browser
-					
+
 					echo ""
 					read -p "It is highly recommend that you abort and reboot the computer before continuing ith the remaining steps. Press any key to finish this step..." message
 					break
