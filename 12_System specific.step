@@ -1,14 +1,15 @@
 ## Intel drivers
 while true; do
-    read -p "Are you using Intel graphics and want to enable Tear-Free mode (https://bugs.freedesktop.org/show_bug.cgi?id=37686)? (y/n) " yn
+    read -p "Are you using Intel graphics and want to enable common optimizations (see https://bugs.freedesktop.org/show_bug.cgi?id=37686 and http://www.phoronix.com/scan.php?page=news_item&px=Ubuntu-16.04-Enable-DRI3)? (y/n) " yn
     case $yn in
         [Yy]*)
-            echo "Section \"Device\""						| sudo tee -a /etc/X11/xorg.conf 
-			echo "   Identifier  \"Intel Graphics\""		| sudo tee -a /etc/X11/xorg.conf 
-			echo "   Driver      \"intel\""					| sudo tee -a /etc/X11/xorg.conf 
-			echo "   Option      \"AccelMethod\" \"sna\""	| sudo tee -a /etc/X11/xorg.conf 
-			echo "   Option      \"TearFree\" \"true\""		| sudo tee -a /etc/X11/xorg.conf 
-			echo "EndSection"								| sudo tee -a /etc/X11/xorg.conf 
+            echo "Section \"Device\""						| sudo tee -a /usr/share/X11/xorg.conf.d/20-intel.conf 
+			echo "   Identifier  \"Intel Graphics\""		| sudo tee -a /usr/share/X11/xorg.conf.d/20-intel.conf
+			echo "   Driver      \"intel\""					| sudo tee -a /usr/share/X11/xorg.conf.d/20-intel.conf
+			echo "   Option      \"AccelMethod\" \"sna\""	| sudo tee -a /usr/share/X11/xorg.conf.d/20-intel.conf
+			echo "   Option      \"TearFree\" \"true\""		| sudo tee -a /usr/share/X11/xorg.conf.d/20-intel.conf
+			echo "   Option      \"DRI\" \"3\""				| sudo tee -a /usr/share/X11/xorg.conf.d/20-intel.conf
+			echo "EndSection"								| sudo tee -a /usr/share/X11/xorg.conf.d/20-intel.conf
             break
         ;;
         [Nn]*) break;;
