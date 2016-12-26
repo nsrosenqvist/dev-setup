@@ -7,5 +7,5 @@ function install_spotify {
 	echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
 
 	sudo apt-get update
-	sudo apt-get install -y spotify-client libgcrypt11
+	sudo apt-get install -y spotify-client
 }
