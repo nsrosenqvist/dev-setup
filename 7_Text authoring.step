@@ -1,24 +1,11 @@
-# add_ppa w-vollprecht/ppa #Ûberwriter
+## PPAs
+add_ppa wereturtle/ppa # Ghostwriter
 
 ## Update + upgrade
 sudo apt-get update
 sudo apt-get dist-upgrade -y
 
 ## Install
-sudo apt-get install -y scribus retext typecatcher # uberwriter
+sudo apt-get install -y scribus typecatcher 
 sudo apt-get install -y fonts-crosextra-carlito fonts-crosextra-caladea
-
-## Typora
-# optional, but recommended
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE
-
-# add Typora's repository
-sudo add-apt-repository 'deb https://typora.io ./linux/'
-sudo apt-get update
-
-# install typora
-sudo apt-get install typora
-
-## Ghostwriter
-add_ppa wereturtle/ppa
-sudo apt-get update && sudo apt-get install ghostwriter
+sudo apt-get install -y ghostwriter
