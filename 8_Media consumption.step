@@ -1,6 +1,6 @@
 ## Add PPA's
 add_ppa videolan/stable-daily
-add_ppa nilarimogard/webupd8
+# add_ppa nilarimogard/webupd8
 
 ## Update + upgrade
 sudo apt-get update
@@ -19,19 +19,6 @@ while true; do
     case $yn in
         [Yy]*)
 			install_spotify
-            break
-        ;;
-        [Nn]*) break;;
-        *) echo "Please answer yes or no.";;
-    esac
-done
-
-## Freshplayer
-while true; do
-    read -p "Do you want to install Freshplayer? (y/n) " yn
-    case $yn in
-        [Yy]*)
-			install_freshplayer
             break
         ;;
         [Nn]*) break;;
