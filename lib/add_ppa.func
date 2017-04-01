@@ -2,9 +2,9 @@
 function add_ppa {
     if [ -d "/etc/apt/sources.list.d" ]; then
         if [ -z "$(grep ^ /etc/apt/sources.list /etc/apt/sources.list.d/* | grep "$1")" ]; then
-            sudo apt-add-repository "ppa:$1"
+            sudo apt-add-repository -y "ppa:$1"
         fi
     else
-        sudo apt-add-repository "ppa:$1"
+        sudo apt-add-repository -y "ppa:$1"
     fi
 }
