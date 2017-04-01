@@ -1,4 +1,4 @@
 ## Install
 function install_joypad {
-  sudo apt-get install -y jstest-gtk qjoypad
+  sudo apt install -y jstest-gtk qjoypad
 }

@@ -6,6 +6,6 @@ function install_spotify {
 	# 2. Add the Spotify repository
 	echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
 
-	sudo apt-get update
-	sudo apt-get install -y spotify-client
+	sudo apt update
+	sudo apt install -y spotify-client
 }

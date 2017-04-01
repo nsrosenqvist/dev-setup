@@ -2,16 +2,3 @@
 install_steam
 install_playonlinux
 install_joypad
-
-## Minecraft
-while true; do
-    read -p "Do you want to install Minecraft? (y/n) " yn
-    case $yn in
-        [Yy]*)
-            install_minecraft
-            break
-        ;;
-        [Nn]*) break;;
-        *) echo "Please answer yes or no.";;
-    esac
-done

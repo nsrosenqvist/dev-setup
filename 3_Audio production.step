@@ -1,16 +1,5 @@
-## Install kxstudio repositories
-# Download package file
-# wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_8.3.1~kxstudio1_all.deb
-
-# Install it
-# sudo dpkg -i kxstudio-repos_8.3.1~kxstudio1_all.deb
-
 ## Add users to audio group
 sudo addgroup "$user" audio
 
-## Update + upgrade
-sudo apt-get update
-sudo apt-get dist-upgrade -y
-
 ## Install DAW's
-sudo apt-get install -y audacity #ardour4
+sudo apt-get install -y audacity

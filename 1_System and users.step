@@ -1,17 +1,13 @@
-## Add PPA's
-add_ppa webupd8team/y-ppa-manager
-# add_ppa danielrichter2007/grub-customizer
-
 ## Update + upgrade
-sudo apt-get update
-sudo apt-get dist-upgrade -y
+sudo apt update
+sudo apt dist-upgrade -y
 
 ## Install
-sudo apt-get install -y gufw hardinfo cpufrequtils powerline #grub-customizer nautilus-open-terminal
-sudo apt-get install -y ubuntu-restricted-extras cifs-utils tree testdisk exfat-fuse exfat-utils hfsprogs hfsplus udftools xbindkeys-config
-sudo apt-get install -y gnome-tweak-tool network-manager-openvpn-gnome #gnome-shell
-sudo apt-get install -y y-ppa-manager
-sudo apt-get install -y hunspell-sv-se myspell-sv-se
+sudo apt install -y gufw hardinfo cpufrequtils powerline
+sudo apt install -y ubuntu-restricted-extras tree exfat-fuse exfat-utils hfsprogs hfsplus udftools
+sudo apt install -y gnome-tweak-tool network-manager-openvpn-gnome
+sudo apt install -y hunspell-sv-se myspell-sv-se
+sudo apt install -y polari gnome-music gnome-photos gnome-maps gnome-weather epiphany-browser
 
 ## Activate firewall
 sudo ufw enable
@@ -100,27 +96,3 @@ while true; do
         	[Nn]*) break;;
         esac
 done
-
-## Ask if we should upgrade to latest GNOME-Shell
-add_ppa gnome3-team/gnome3
-sudo apt-get update
-sudo apt-get dist-upgrade -y
-sudo apt-get install -y polari gnome-music gnome-photos gnome-maps gnome-weather epiphany-browser
-
-while true; do
-        read -p "Do you want to install the staging PPA for GNOME? (y/n) " yn
-        case $yn in
-                [Yy]*)
-					add_ppa gnome3-team/gnome3-staging
-
-					sudo apt-get update
-					sudo apt-get dist-upgrade -y
-
-					echo ""
-					read -p "It is highly recommend that you abort and reboot the computer before continuing ith the remaining steps. Press any key to finish this step..." message
-					break
-				;;
-                [Nn]*) break;;
-        esac
-done
-

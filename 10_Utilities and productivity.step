@@ -1,20 +1,19 @@
 ## Add PPA's
 add_ppa libreoffice/ppa
+add_ppa nextcloud-devs/client
 
 ## Enable partner repository
 sudo sed -i "/^# deb .*partner/ s/^# //" /etc/apt/sources.list
 
-## Install ownCloud repositories
-sudo sh -c "echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/desktop/Ubuntu_${release_version}/ /' > /etc/apt/sources.list.d/owncloud-client.list"
-wget -qO - "http://download.opensuse.org/repositories/isv:ownCloud:desktop/Ubuntu_16.10/Release.key" | sudo apt-key add -
-
 ## Update + upgrade
-sudo apt-get update
-sudo apt-get dist-upgrade -y
+sudo apt update
+sudo apt dist-upgrade -y
 
 ## Install
-sudo apt-get install -y libreoffice-style-sifr impressive pdfsam
-sudo apt-get install -y remmina deluge
-sudo apt-get install -y stellarium cheese mkvtoolnix-gui
-sudo apt-get install -y skype nautilus-dropbox owncloud-client
-sudo apt-get install -y gnome-gmail
+sudo apt install -y libreoffice-style-sifr impressive pdfsam
+sudo apt install -y remmina deluge
+sudo apt install -y stellarium cheese mkvtoolnix-gui
+sudo apt install -y nextcloud-client
+sudo apt install -y gnome-gmail
+
+install_insync

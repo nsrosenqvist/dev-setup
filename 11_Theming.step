@@ -2,8 +2,8 @@
 add_ppa moka/daily
 
 ## Update + upgrade
-sudo apt-get update
+sudo apt update
 
 ## Install
-sudo apt-get install -y moka-icon-theme
-sudo apt-get install -y arc-theme
+sudo apt install -y moka-icon-theme
+sudo apt install -y arc-theme

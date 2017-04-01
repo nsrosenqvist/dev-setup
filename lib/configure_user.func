@@ -14,9 +14,9 @@ function configure_user {
 	sudo mkdir "/home/$newuser/.bin"
 
 	sudo sh -c "echo '' >> '$bashrc'"
-	sudo sh -c "echo '#------------------#" >> '$bashrc'"
-	sudo sh -c "echo '#      CUSTOM      #" >> '$bashrc'"
-	sudo sh -c "echo '#------------------#" >> '$bashrc'"
+	sudo sh -c "echo '#------------------#' >> '$bashrc'"
+	sudo sh -c "echo '#      CUSTOM      #' >> '$bashrc'"
+	sudo sh -c "echo '#------------------#' >> '$bashrc'"
 	sudo sh -c "echo '' >> '$bashrc'"
 	sudo sh -c "echo '## Add ~/.bin to path' >> '$bashrc'"
 	sudo sh -c "echo 'export PATH=\"\$PATH:~/.bin\"' >> '$bashrc'"

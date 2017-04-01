@@ -1,36 +1,26 @@
 ## Common dev tools
-sudo apt-get install -y filezilla meld gnome-boxes pyrenamer curl glade shunit2 build-essential make cmake automake mc mysql-client mysql-workbench
+sudo apt install -y filezilla meld gnome-boxes pyrenamer curl glade shunit2 build-essential make cmake automake mysql-client mysql-workbench
 
 ## Git
-sudo apt-get install -y git gitg
+sudo apt install -y git gitg
 git config --global user.email "$user_email"
 git config --global user.name "$user_name"
 git config --global push.default simple
 
-## Android tools
-# sudo apt-get install -y android-tools-adb android-tools-fastboot
-
 ## Rust
-sudo curl https://sh.rustup.rs -sSf | sh
+curl https://sh.rustup.rs -sSf | sh
 
-## Ubuntu SDK
-USDK_INSTALLED=1
+## Flatpak
+sudo apt install -y flatpak flatpak-builder
 
-while true; do
-    read -p "Do you want to install the Ubuntu SDK? (y/n) " yn
-    case $yn in
-        [Yy]*)
-            USDK_INSTALLED=0
-            add_ppa ubuntu-sdk-team/ppa
-            sudo apt-get update
-            sudo apt-get install -y ubuntu-sdk
+## Create Code directory
+if [ ! -d "$HOME/Code" ]; then
+	mkdir "$HOME/Code"
+fi
 
-            break
-        ;;
-        [Nn]*) break;;
-        *) echo "Please answer yes or no.";;
-    esac
-done
+echo "" >> ~/.bashrc
+echo "## code alias" >> ~/.bashrc
+echo "alias code=\"cd ~/Code\"" >> ~/.bashrc
 
 ## Editors
 while true; do
@@ -38,10 +28,8 @@ while true; do
     case $yn in
         [Yy]*) 
 			add_ppa webupd8team/atom
-			sudo apt-get update
-			sudo apt-get install -y atom
-			apm stars --install </dev/null
-
+			sudo apt update
+			sudo apt install -y atom
             break
         ;;
         [Nn]*) break;;
@@ -67,11 +55,11 @@ while true; do
                 case "${i,,}" in
                     mysql)
                     	MYSQL_INSTALLED=0
-                        sudo apt-get install -y mysql-server
-					;;
+                        sudo apt install -y mysql-server
+		    ;;
                     sqlite)
                     	SQLITE_INSTALLED=0
-                        sudo apt-get install -y sqlite sqliteman
+                        sudo apt install -y sqlite sqliteman
                     ;;
                 esac
             done
@@ -86,15 +74,15 @@ while true; do
     read -p "Do you want to install PHP? (y/n) " yn
     case $yn in
         [Yy]*)
-            sudo apt-get install -y php-cli php-common php-curl php-json php-mcrypt php-gd
+            sudo apt install -y php-cli php-dev php-common php-curl php-json php-mcrypt php-gd
             sudo phpenmod mcrypt
             
             if [ $MYSQL_INSTALLED -eq 0 ]; then
-            	sudo apt-get install -y php-mysql
+            	sudo apt install -y php-mysql
             fi
             
             if [ $SQLITE_INSTALLED -eq 0 ]; then
-            	sudo apt-get install -y php-sqlite3
+            	sudo apt install -y php-sqlite3
             fi
 
             # Composer
@@ -122,29 +110,11 @@ while true; do
     read -p "Do you want to install Node.js? (y/n) " yn
     case $yn in
         [Yy]*)
-            install_nodejs
+	    sudo apt install -y nodejs npm
+            #install_nodejs
             break
         ;;
         [Nn]*) break;;
-        *) echo "Please answer yes or no.";;
-    esac
-done
-
-## Java
-while true; do
-    read -p "Do you want to install Oracle Java? If no, OpenJDK will be installed instead. (y/n) " yn
-    case $yn in
-        [Yy]*)
-            add_ppa webupd8team/java
-            sudo apt-get update
-            sudo apt-get install -y oracle-java8-installer
-            break
-        ;;
-        [Nn]*)
-            ## OpenJDK
-            sudo apt-get install -y openjdk-8-jre
-            break
-        ;;
         *) echo "Please answer yes or no.";;
     esac
 done

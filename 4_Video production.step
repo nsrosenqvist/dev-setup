@@ -3,11 +3,11 @@ add_ppa stebbins/handbrake-releases
 add_ppa kdenlive/kdenlive-stable
 
 ## Update + upgrade
-sudo apt-get update
-sudo apt-get dist-upgrade -y
+sudo apt update
+sudo apt dist-upgrade -y
 
 ## Install
-sudo apt-get install -y kdenlive kdenlive-data
-sudo apt-get install -y devede
-sudo apt-get install -y blender
-sudo apt-get install -y handbrake-gtk
+sudo apt install -y kdenlive kdenlive-data
+sudo apt install -y devede
+sudo apt install -y blender
+sudo apt install -y handbrake

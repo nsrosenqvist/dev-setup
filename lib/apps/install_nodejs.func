@@ -24,5 +24,5 @@ function install_nodejs {
 
 	# Install common node packages
 	sudo chown $user:$user -R ~/.npm
-	npm install -g grunt-cli bower gulp
+	npm install -g gulp-cli
 }

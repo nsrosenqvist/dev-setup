@@ -1,10 +1,10 @@
 function improve_media_support {
 	## Libdvdcss
-	sudo apt-get install -y libdvd-pkg
+	sudo apt install -y libdvd-pkg
 
 	## Blu-ray support in VLC
-	sudo apt-get install -y libaacs0 libbluray-bdj libbluray1
-	sudo apt-get dist-upgrade -y
+	sudo apt install -y libaacs0 libbluray-bdj libbluray1
+	sudo apt dist-upgrade -y
 	mkdir -p ~/.config/aacs/
 	cd ~/.config/aacs/ && wget http://vlc-bluray.whoknowsmy.name/files/KEYDB.cfg
 }

@@ -1,6 +1,5 @@
 ## Add PPA's
 add_ppa videolan/stable-daily
-# add_ppa nilarimogard/webupd8
 
 ## Update + upgrade
 sudo apt-get update
@@ -18,7 +17,7 @@ while true; do
     read -p "Do you want to install Spotify? (y/n) " yn
     case $yn in
         [Yy]*)
-			install_spotify
+	    install_spotify
             break
         ;;
         [Nn]*) break;;

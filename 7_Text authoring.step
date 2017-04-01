@@ -2,10 +2,10 @@
 add_ppa wereturtle/ppa # Ghostwriter
 
 ## Update + upgrade
-sudo apt-get update
-sudo apt-get dist-upgrade -y
+sudo apt update
+sudo apt dist-upgrade -y
 
 ## Install
-sudo apt-get install -y scribus typecatcher 
-sudo apt-get install -y fonts-crosextra-carlito fonts-crosextra-caladea
-sudo apt-get install -y ghostwriter
+sudo apt install -y scribus typecatcher 
+sudo apt install -y fonts-crosextra-carlito fonts-crosextra-caladea
+sudo apt install -y ghostwriter

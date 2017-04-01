@@ -1,5 +1,5 @@
 ## Install
 function install_steam {
-	sudo apt-get install -y steam
+	sudo apt install -y steam
 	echo 'STEAM_FRAME_FORCE_CLOSE=1' | sudo tee -a /etc/environment
 }
