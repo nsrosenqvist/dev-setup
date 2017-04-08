@@ -1,28 +1,30 @@
 function install_nodejs {
-	curl -sL https://deb.nodesource.com/setup_6.x | sudo bash -
-	sudo apt-get install -y nodejs npm
+	sudo apt install -y nodejs npm
+	
+	# Support legacy node
+	sudo ln -s /usr/bin/nodejs /usr/bin/node
 
-	# Either create or empty ~/.npm
-	if [ -d ~/.npm ]; then
-		cd ~/.npm
+	# Either create or empty ~/.npm-global
+	if [ -d ~/.npm-global ]; then
+		cd ~/.npm-global
 		rm -R *
 	else
-		mkdir ~/.npm
-		cd ~/.npm
+		mkdir ~/.npm-global
+		cd ~/.npm-global
 	fi
 
 	# Set npm paths
-	npm config set prefix ~/.npm
+	npm config set prefix ~/.npm-global
 
-	mkdir ~/.npm/cache
-	npm config set cache ~/.npm/cache
+	mkdir ~/.npm-global/cache
+	npm config set cache ~/.npm-global/cache
 
-	# Add ~/.npm/bin to PATH
+	# Add ~/.npm-global/bin to PATH
 	echo "" >> ~/.bashrc
-	echo "## Add ~/.npm/bin to path" >> ~/.bashrc
-	echo 'export PATH="$HOME/.npm/bin:$PATH"' >> ~/.bashrc
+	echo "## Add ~/.npm-global/bin to path" >> ~/.bashrc
+	echo 'export PATH="$HOME/.npm-global/bin:$PATH"' >> ~/.bashrc
 
 	# Install common node packages
-	sudo chown $user:$user -R ~/.npm
-	npm install -g gulp-cli
+	sudo chown $user:$user -R ~/.npm-global
+	npm install -g gulp-cli yarn
 }
