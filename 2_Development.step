@@ -110,7 +110,8 @@ while true; do
     read -p "Do you want to install Node.js? (y/n) " yn
     case $yn in
         [Yy]*)
-	    sudo apt install -y nodejs npm
+	 	    sudo apt install -y nodejs npm
+			sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
             #install_nodejs
             break
         ;;
