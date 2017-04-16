@@ -23,4 +23,5 @@ echo "11. Install Gimp Paint Studio resources (https://code.google.com/p/gps-gim
 echo "12. Install Prey (https://www.preyproject.com/)?"
 echo "13. Install Messenger for desktop (http://messengerfordesktop.com/#download)"
 echo "14. Install Sunvox"
+echo "15. Enable Hardware Acceleration on Firefox (http://en.librehat.com/blog/force-enable-hardware-acceleration-in-firefox-on-linux/ and https://wiki.archlinux.org/index.php/Firefox/Tweaks#Enable_Accelerated_Azure_Canvas)
 echo ""
