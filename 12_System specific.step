@@ -7,7 +7,6 @@ while true; do
 			echo "   Identifier  \"Intel Graphics\""		| sudo tee -a /usr/share/X11/xorg.conf.d/20-intel.conf
 			echo "   Driver      \"intel\""					| sudo tee -a /usr/share/X11/xorg.conf.d/20-intel.conf
 			echo "   Option      \"AccelMethod\" \"sna\""	| sudo tee -a /usr/share/X11/xorg.conf.d/20-intel.conf
-			echo "   Option      \"TearFree\" \"true\""		| sudo tee -a /usr/share/X11/xorg.conf.d/20-intel.conf
 			echo "   Option      \"DRI\" \"3\""				| sudo tee -a /usr/share/X11/xorg.conf.d/20-intel.conf
 			echo "EndSection"								| sudo tee -a /usr/share/X11/xorg.conf.d/20-intel.conf
             break
