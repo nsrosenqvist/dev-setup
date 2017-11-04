@@ -7,10 +7,17 @@ git config --global user.email "$user_email"
 git config --global user.name "$user_name"
 git config --global push.default simple
 
+## Zeal
+add_ppa zeal-developers/ppa
+sudo apt update
+sudo apt install zeal
+
 ## Rust
 curl https://sh.rustup.rs -sSf | sh
 
 ## Flatpak
+add_ppa alexlarsson/flatpak
+sudo apt update
 sudo apt install -y flatpak flatpak-builder
 
 ## Create Code directory
