@@ -1,5 +1,6 @@
 function install_nodejs {
-	sudo apt install -y nodejs npm
+	curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
+	sudo apt install -y nodejs
 	
 	# Support legacy node
 	sudo ln -s /usr/bin/nodejs /usr/bin/node
