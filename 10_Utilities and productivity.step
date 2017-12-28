@@ -15,5 +15,3 @@ sudo apt install -y remmina deluge
 sudo apt install -y stellarium cheese mkvtoolnix-gui
 sudo apt install -y nextcloud-client
 sudo apt install -y gnome-gmail
-
-install_insync
