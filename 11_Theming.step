@@ -1,9 +1,9 @@
 ## Add PPA's
-add_ppa moka/daily
+add_ppa papirus/papirus
 
 ## Update + upgrade
 sudo apt update
 
 ## Install
-sudo apt install -y moka-icon-theme
+sudo apt install -y papirus-icon-theme
 sudo apt install -y arc-theme
